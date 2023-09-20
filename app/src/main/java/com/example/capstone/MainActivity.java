@@ -11,8 +11,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       //유선종 바보
-        //dsadasasd
-        //dsadsa
+       //최종테스트입니다.
     }
 }
