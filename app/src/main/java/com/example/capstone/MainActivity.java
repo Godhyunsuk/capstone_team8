@@ -11,11 +11,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       //안녕하세요 테스트입니다22
-        //유선종입니당
-        //kldsaldmsalkmdkasldmklsdmaklsd
-        ///daslmdlkasmdkslad
-
-        ///asmdklasmdkasmldmklasdmkla
+       //유선종 바보
     }
 }
