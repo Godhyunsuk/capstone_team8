@@ -13,6 +13,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceStare);
         setContentView(R.layout.splash_activity);
 
+        //잠시 기달린 후 다음 페이지로 넘김
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -24,9 +25,9 @@ public class SplashActivity extends AppCompatActivity {
         }, 2000);
     }
 
+
+    //이거 없애도 될듯? 없어도 잘 작동됨.
     @Override
-
-
     protected void onPause()
     {
         super.onPause();
