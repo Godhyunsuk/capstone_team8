@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Map;
+
 public class RegisterActivity extends AppCompatActivity {
 
     Button btnPrevious;
@@ -27,4 +29,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
 }
