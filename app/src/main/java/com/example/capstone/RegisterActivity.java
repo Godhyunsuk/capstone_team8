@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.regex.Pattern;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -50,27 +53,66 @@ public class RegisterActivity extends AppCompatActivity {
                 String strPwd = etPwd.getText().toString();
                 String strPwdChk = etPwdChk.getText().toString();
                 String strNickname = etNickname .getText().toString();
+                String e_mailPattern = "^[a-zA-Z0-9]+@[a-zA-Z0-9.]+$"; // 이메일 형식 패턴
 
-                mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-                            UserAccount account = new UserAccount();
-                            account.setIdToken(firebaseUser.getUid());
-                            account.setEmailId(firebaseUser.getEmail());
-                            account.setPassword(strPwd);
+                if(!Pattern.matches(e_mailPattern , strEmail)){
+                    Toast.makeText(RegisterActivity.this , "이메일 형식을 확인하세요" , Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                StringBuffer strbuP1 = new StringBuffer(strPwd);
+                StringBuffer strbuP2 = new StringBuffer(strPwdChk);
 
-                            Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+                if(strPwd.equals("")) {
+                    Toast.makeText(RegisterActivity.this , "비밀번호를 입력하세요" , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(strbuP1.length() < 8){ // 최소 비밀번호 사이즈를 맞추기 위해서
+                    Toast.makeText(RegisterActivity.this, "비밀번호는 최소 8자리 이상입니다", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(strPwdChk.equals("")) {
+                    Toast.makeText(RegisterActivity.this , "비밀번호 확인을 입력하세요" , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(strPwd.equals(strPwdChk)) {
+                    mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+                                UserAccount account = new UserAccount();
+                                account.setIdToken(firebaseUser.getUid());
+                                account.setEmailId(firebaseUser.getEmail());
+                                account.setPassword(strPwd);
+
+                                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+
+                                Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
+                            else {
+                                try {
+                                    task.getResult();
+                                }
+                                catch(Exception e) {
+                                    e.printStackTrace();
+                                    Log.d("Fail_register_email",e.getMessage());
+                                    Toast.makeText(RegisterActivity.this, "이미 존재하는 이메일입니다", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }
-
-                        else {
-                            Toast.makeText(RegisterActivity.this, "회원가입 실패", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
+                }
+                else {
+                    Toast.makeText(RegisterActivity.this, "비밀번호가 서로 다릅니다", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
