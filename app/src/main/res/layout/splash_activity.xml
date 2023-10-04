@@ -12,3 +12,4 @@
         android:background="@drawable/loadingimage">
     </ImageView>
 </LinearLayout>
+
