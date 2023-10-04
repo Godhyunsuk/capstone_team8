@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-    //파베 변수
+    //파베 변수 12345
     private FirebaseAuth mAuth;
 
     Button btnLogin, btnRegister;
