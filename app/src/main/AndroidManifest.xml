@@ -13,6 +13,13 @@
         android:theme="@style/Theme.Capstone"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:exported="false">
             <meta-data
@@ -28,17 +35,13 @@
         </activity>
         <activity
             android:name=".MainActivity"
-
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <!-- 앱 실행시 SplashActivity가 먼저 실행됨 -->
-
+        </activity> <!-- 앱 실행시 SplashActivity가 먼저 실행됨 -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
