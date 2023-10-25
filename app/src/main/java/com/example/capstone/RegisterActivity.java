@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.regex.Pattern;
 
@@ -85,9 +86,12 @@ public class RegisterActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
                                 UserAccount account = new UserAccount();
+
                                 account.setIdToken(firebaseUser.getUid());
                                 account.setEmailId(firebaseUser.getEmail());
                                 account.setPassword(strPwd);
+                                account.setNickname(strNickname);
+
 
                                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
 
