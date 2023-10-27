@@ -20,14 +20,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         init(); //객체 정의
         SettingListener(); //리스너 등록
 
         //맨 처음 시작할 탭 설정
         bottomNavigationView.setSelectedItemId(R.id.tab_home);
-
-
     }
 
     private void init() {

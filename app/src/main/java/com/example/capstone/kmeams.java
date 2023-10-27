@@ -84,10 +84,28 @@ class Recommend_selected {
         this.ans = ans;
     }
     DrinkRecommender ans;
+    double[] sData_info;
     CSVReader drink_data = new CSVReader();
     List<String> recommendlist = new ArrayList<>();
-    public List<String> list_out(double[] selected_data) throws Exception {
-        int selected_cluster = ans.get_cluster(selected_data);
+    public double[] sDataInfo(String selected_data){
+        for(int i=1;i<drink_data.readCSV().size(); i++){
+            List<String> list = drink_data.readCSV().get(i);
+            if(Objects.equals(selected_data, list.get(0))){
+                float fat = Float.parseFloat(list.get(2));
+                float sugar = Float.parseFloat(list.get(3));
+                float na = Float.parseFloat(list.get(4));
+                float protein = Float.parseFloat(list.get(5));
+                float caffeine = Float.parseFloat(list.get(6));
+                float kcal = Float.parseFloat(list.get(7));
+                sData_info = new double[]{fat,sugar,na,protein,caffeine,kcal};
+            }
+        }
+        return sData_info;
+    }
+    public List<String> list_out() throws Exception {
+        double[] sData_info = new double[6];
+
+        int selected_cluster = ans.get_cluster(sData_info);
         for(int i=1 ; i<drink_data.readCSV().size() ; i++){
             List<String> list = drink_data.readCSV().get(i);
             float fat = Float.parseFloat(list.get(2));
@@ -103,6 +121,7 @@ class Recommend_selected {
         }
         return recommendlist;
     }
+
 }
 
 class Recommend_favorite{
@@ -152,19 +171,5 @@ class Recommend_favorite{
             recommend_favorite.add(drink_data.readCSV().get(num).get(0));
         }
         return recommend_favorite;
-    }
-}
-
-public class kmeams {
-    public static void main(String[] args) throws Exception {
-        DrinkRecommender data = new DrinkRecommender();
-        double[] selected_data = {0, 42.3, 41.2, 1, 10, 244.5};
-        List<String> favorite_list = new ArrayList<>(Arrays.asList("mg-015","mg-026","mg-002","mg-102","mg-079"));
-        Recommend_selected result1 = new Recommend_selected();
-        Recommend_favorite result2 = new Recommend_favorite();
-        result1.setDrinkRecommeder(data);
-        System.out.println(result1.list_out(selected_data));
-        result2.get_centroid(favorite_list);
-        System.out.println(result2.list_out());
     }
 }
