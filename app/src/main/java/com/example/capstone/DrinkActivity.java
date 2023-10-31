@@ -35,6 +35,7 @@ public class DrinkActivity extends AppCompatActivity {
         return allContent;
     }
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
