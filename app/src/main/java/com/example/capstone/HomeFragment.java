@@ -1,24 +1,30 @@
 package com.example.capstone;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.capstone.ConnectDB.SelectData;
+import java.util.Map;
+import java.util.HashMap;
 public class HomeFragment extends Fragment {
-
     ImageButton backButton, starbucksButton, ediyaButton, composeButton, angelButton, hollysButton, megaButton, ppascucciButton, tomButton, twsomeButton;
-
+    //뺵다방 데이터, 처음에 선언해주고 나중에 값을 가져와야 제대로 값이 출력됨.
+    //나중에 다른 브랜드도 넣어줄 예정.
+    SelectData back = new SelectData("t","back");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
         backButton = (ImageButton) view.findViewById(R.id.backButton);
@@ -31,7 +37,6 @@ public class HomeFragment extends Fragment {
         ppascucciButton = (ImageButton) view.findViewById(R.id.ppascucciButton);
         tomButton = (ImageButton) view.findViewById(R.id.tomButton);
         twsomeButton = (ImageButton) view.findViewById(R.id.twsomeButton);
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +57,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
         ediyaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,7 +136,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
         return view;
     }
 }
