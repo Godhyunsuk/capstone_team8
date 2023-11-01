@@ -32,6 +32,7 @@ public class SelectData {
         public JsonParse(String TAG){
             this.TAG = TAG;
         }
+
         @Override
         protected String doInBackground(String... strings) {    // execute의 매개변수를 받아와서 사용
             String url = strings[0];
@@ -67,7 +68,9 @@ public class SelectData {
                 bufferedReader.close();
                 Log.d(TAG, sb.toString().trim());
 
-                return sb.toString().trim();        // 받아온 JSON의 공백을 제거
+                jsonString = sb.toString().trim();        // 받아온 JSON의 공백을 제거
+                doParse(TAG);
+                return "success";
             } catch (Exception e) {
                 Log.d(TAG, "InsertData: Error ", e);
                 String errorString = e.toString();
@@ -75,11 +78,11 @@ public class SelectData {
             }
         }
 
+        //이게 마지막에 실행되다 보니깐 다 실행된 뒤에 호출됨.
+        //요너석이 문제였던 거임.
         @Override
         protected void onPostExecute(String fromdoInBackgroundString) { // doInBackgroundString에서 return한 값을 받음
             super.onPostExecute(fromdoInBackgroundString);
-            jsonString = fromdoInBackgroundString;
-            doParse(TAG);
             Log.d(TAG,COFFEE.toString());
         }
     }

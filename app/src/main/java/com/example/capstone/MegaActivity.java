@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.capstone.ConnectDB.SelectData;
+
 
 public class MegaActivity extends AppCompatActivity {
 
@@ -18,6 +20,8 @@ public class MegaActivity extends AppCompatActivity {
     TextView drinkName1,drinkName2,drinkName3;
     static String id = "";
     static String name="";
+
+    SelectData back;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +33,13 @@ public class MegaActivity extends AppCompatActivity {
         drinkName1 = (TextView) findViewById(R.id.drink_name1);
         drinkName2 = (TextView) findViewById(R.id.drink_name2);
         drinkName3 = (TextView) findViewById(R.id.drink_name3);
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MegaActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+
             }
         });
         MG001.setOnClickListener(new View.OnClickListener() {
