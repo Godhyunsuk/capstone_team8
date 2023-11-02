@@ -14,18 +14,26 @@ import com.example.capstone.ConnectDB.SelectData;
 
 
 public class MegaActivity extends AppCompatActivity {
-
+    //유선종이 추가
+    SelectData sd = new SelectData("mega","mega");
     Button backBtn;
     ImageView MG001,MG002,MG003;
     TextView drinkName1,drinkName2,drinkName3;
     static String id = "";
     static String name="";
 
-    SelectData back;
 
     protected void onCreate(Bundle savedInstanceState) {
+        //유선종이 추가
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mega);
+        System.out.println(sd.COFFEE);
+
         backBtn = (Button) findViewById(R.id.back);
         MG001 = (ImageView) findViewById(R.id.MG001);
         MG002 = (ImageView) findViewById(R.id.MG002);
