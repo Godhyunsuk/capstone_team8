@@ -1,10 +1,11 @@
 package com.example.capstone;
 
-
 import android.content.res.AssetManager;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+
+import org.apache.commons.collections.map.HashedMap;
 
 import weka.clusterers.SimpleKMeans;
 import weka.core.Attribute;
@@ -13,31 +14,25 @@ import weka.core.Instances;
 import java.io.*;
 import java.util.*;
 
-
 class DrinkRecommender {
     private Instances data;
     private SimpleKMeans kMeans;
-//    CsvReader drink_data = new CsvReader();
-    public DrinkRecommender(List<String []> drink_data) throws Exception {
+    public DrinkRecommender(Map<String,double[]> drink_data) throws Exception {
+
+        Iterator<String> keys = drink_data.keySet().iterator();
 
         ArrayList<Attribute> attributes = new ArrayList<>();
-        attributes.add(new Attribute("fat"));
-        attributes.add(new Attribute("sugar"));
-        attributes.add(new Attribute("na"));
-        attributes.add(new Attribute("protein"));
-        attributes.add(new Attribute("caffeine"));
         attributes.add(new Attribute("kcal"));
+        attributes.add(new Attribute("fat"));
+        attributes.add(new Attribute("protein"));
+        attributes.add(new Attribute("na"));
+        attributes.add(new Attribute("sugar"));
+        attributes.add(new Attribute("caffein"));
         data = new Instances("drink_data", attributes, 0);
 
-        for(int i=1 ; i<drink_data.size() ; i++){
-            String[] list = drink_data.get(i);
-            float fat = Float.parseFloat(list[2]);
-            float sugar = Float.parseFloat(list[3]);
-            float na = Float.parseFloat(list[4]);
-            float protein = Float.parseFloat(list[5]);
-            float caffeine = Float.parseFloat(list[6]);
-            float kcal = Float.parseFloat(list[7]);
-            double[] value = {fat,sugar,na,protein,caffeine,kcal};
+        while(keys.hasNext()){
+            String key = keys.next();
+            double[] value = drink_data.get(key);
             data.add(new DenseInstance(1.0, value));
         }
         kMeans = new SimpleKMeans();
@@ -54,98 +49,59 @@ class DrinkRecommender {
     }
 }
 class Recommend_selected {
-    public void setDrinkRecommeder(DrinkRecommender ans,List<String []> drink_data){
-        this.ans = ans;
-        this.drink_data = drink_data;
-    }
-    List<String[]> drink_data;
-    DrinkRecommender ans;
-    double[] sData_info;
-//    CsvReader drink_data = new CsvReader();
-    List<String> recommendlist = new ArrayList<>();
-    public double[] sDataInfo(String selected_data){
-        for(int i=1;i<drink_data.size(); i++){
-            String[] list = drink_data.get(i);
-            if(Objects.equals(selected_data, list[0])){
-                float fat = Float.parseFloat(list[2]);
-                float sugar = Float.parseFloat(list[3]);
-                float na = Float.parseFloat(list[4]);
-                float protein = Float.parseFloat(list[5]);
-                float caffeine = Float.parseFloat(list[6]);
-                float kcal = Float.parseFloat(list[7]);
-                sData_info = new double[]{fat,sugar,na,protein,caffeine,kcal};
+    List<String> recommendlist;
+    public  Recommend_selected(DrinkRecommender ans,Map<String,double []> drink_data,String selected) throws Exception {
+        Iterator<String> keys = drink_data.keySet().iterator();
+        recommendlist = new ArrayList<>();
+        int selected_cluster = ans.get_cluster(drink_data.get(selected));
+        while(keys.hasNext()){
+            String key = keys.next();
+            if(ans.get_cluster(drink_data.get(key)) == selected_cluster){
+                recommendlist.add(key);
             }
         }
-        return sData_info;
+        Collections.shuffle(recommendlist);
     }
-    public List<String> list_out() throws Exception {
-        double[] sData_info = new double[6];
 
-        int selected_cluster = ans.get_cluster(sData_info);
-        for(int i=1 ; i<drink_data.size() ; i++){
-            String[] list = drink_data.get(i);
-            float fat = Float.parseFloat(list[2]);
-            float sugar = Float.parseFloat(list[3]);
-            float na = Float.parseFloat(list[4]);
-            float protein = Float.parseFloat(list[5]);
-            float caffeine = Float.parseFloat(list[6]);
-            float kcal = Float.parseFloat(list[7]);
-            double[] value = {fat,sugar,na,protein,caffeine,kcal};
-            if(ans.get_cluster(value) == selected_cluster){
-                recommendlist.add(list[0]);
-            }
-        }
+    public List<String> list_out(){
         return recommendlist;
     }
 
 }
 
 class Recommend_favorite{
-    private Instances data;
-//    CsvReader drink_data = new CsvReader();
     List<String> recommend_favorite = new ArrayList<>();
-    double[] favorite_centroid = new double[]{};
-    double fat,sugar,na,protein,caffeine,kcal = 0 ;
-
-    public void get_centroid(List<String> favorite_list,List<String []> drink_data){
-
-        double size = favorite_list.size();
-        for(int i = 0 ; i < drink_data.size() ; i++){
-            String[] list = drink_data.get(i);
-            for(int j = 0; j<size;j++){
-                if(Objects.equals(favorite_list.get(j), list[0])){
-                    fat += Float.parseFloat(list[2]);
-                    sugar += Float.parseFloat(list[3]);
-                    na += Float.parseFloat(list[4]);
-                    protein += Float.parseFloat(list[5]);
-                    caffeine += Float.parseFloat(list[6]);
-                    kcal += Float.parseFloat(list[7]);
-                }
+    public Recommend_favorite(List<String> favorite_list,Map<String,double[]> drink_data){
+        int size = favorite_list.size();
+        double[] favorite_centroid = new double[]{0,0,0,0,0,0};
+        for(int i = 0 ; i < favorite_list.size() ; i++){
+            double[] values = drink_data.get(favorite_list.get(i));
+            for(int j=0;j<6;j++){
+                favorite_centroid[i]=values[j]/size;
             }
         }
-        favorite_centroid = new double[]{fat / size, sugar / size,
-                na / size, protein / size, caffeine / size, kcal / size};
+        Iterator<String> keys = drink_data.keySet().iterator();
+        Map<String, Double> data = new HashMap<>();
+        while(keys.hasNext()){
+            String key = keys.next();
+            double[] list = drink_data.get(key);
+            Double temp = 0.0;
+            for(int i = 0;i < favorite_centroid.length;i++){
+                temp += Math.abs(list[i] - favorite_centroid[i]);
+            }
+            data.put(key,temp);
+        }
+        List<Double> keySet = new ArrayList<>(data.values());
+        keySet.sort(Double::compareTo);
+        Iterator<String> datakeys = data.keySet().iterator();
+        int cnt=0;
+        while(datakeys.hasNext() && cnt<10){
+            String datakey = keys.next();
+            recommend_favorite.add(datakey);
+            cnt+=1;
+        }
     }
-
-    public List<String> list_out(List<String []> drink_data){
-        double[][] data = new double[drink_data.size()]
-                [favorite_centroid.length];
-        for(int i = 1;i < drink_data.size();i++){
-            String[] list = drink_data.get(i);
-            double temp = 0;
-            for(int j = 0;j < favorite_centroid.length;j++){
-                temp += Math.abs(Double.parseDouble(list[j+2])
-                        -favorite_centroid[j]);
-            }
-            double[] tmp = {temp,i};
-
-            data[i]=tmp;
-        }
-        Arrays.sort(data,(o1,o2)->Double.compare(o1[0],o2[0]));
-        for(int i=1;i<11;i++){
-            int num = (int) data[i][1];
-            recommend_favorite.add(drink_data.get(num)[0]);
-        }
+    public List<String> list_out(Map<String,double[]> drink_data){
         return recommend_favorite;
     }
 }

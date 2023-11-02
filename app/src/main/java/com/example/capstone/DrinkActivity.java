@@ -12,30 +12,23 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
-
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.util.*;
 
 public class DrinkActivity extends AppCompatActivity {
     Button back;
-    ImageView drinkImg;
-    TextView drinkName,drinkNa,drinkSugar,drinkProtein,drinkCaffein,drinkFat,drinkKcal,tvrmd1,tvrmd2,tvrmd3;
-    private List<String[]> loadData() throws IOException, CsvException {
-        AssetManager assetManager = DrinkActivity.this.getAssets();
-        InputStream inputStream = assetManager.open("coffee.csv");
-        CSVReader csvReader = new CSVReader(new InputStreamReader(inputStream, "UTF-8"));
-
-        List<String[]> allContent = (List<String[]>) csvReader.readAll();
-        return allContent;
-    }
-
-    
+    ImageView drinkImg,ivRmd1,ivRmd2,ivRmd3,ivRmd4;
+    TextView drinkName,drinkNa,drinkSugar,drinkProtein,drinkCaffein,drinkFat,drinkKcal,tvrmd1,tvrmd2,tvrmd3,tvrmd4;
+    DrinkRecommender dr;
+    Recommend_selected rs;
+    List<String> rsList;
+    static Map<String,double[]> data;
+    static String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,61 +45,94 @@ public class DrinkActivity extends AppCompatActivity {
         tvrmd1 = (TextView) findViewById(R.id.tvRcmd1);
         tvrmd2 = (TextView) findViewById(R.id.tvRcmd2);
         tvrmd3 = (TextView) findViewById(R.id.tvRcmd3);
-        List<String[]> csvList = null;
-        String id = MegaActivity.id;
-        String name = MegaActivity.name;
+        tvrmd4 = (TextView) findViewById(R.id.tvRcmd4);
+        ivRmd1 = (ImageView) findViewById(R.id.ivRcmd1);
+        ivRmd2 = (ImageView) findViewById(R.id.ivRcmd2);
+        ivRmd3 = (ImageView) findViewById(R.id.ivRcmd3);
+        ivRmd4 = (ImageView) findViewById(R.id.ivRcmd4);
 
-        Recommend_selected rs = new Recommend_selected();
-        try {
-            csvList = loadData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CsvException e) {
-            e.printStackTrace();
-        }
 
-        DrinkRecommender dr = null;
+        double[] values = data.get(name);
         try {
-            dr = new DrinkRecommender(csvList);
+            dr = new DrinkRecommender(data);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        rs.setDrinkRecommeder(dr, csvList);
-        List<String> rlist = null;
         try {
-            rlist = rs.list_out();
+            rs = new Recommend_selected(dr,data,name);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] data = csvList.get(0);
-        double[] sData_info = rs.sDataInfo(id);
-        String Fat = String.format("%.2f", sData_info[0]);
-        String Sugar = String.format("%.2f", sData_info[1]);
-        String Na = String.format("%.2f", sData_info[2]);
-        String Protein = String.format("%.2f", sData_info[3]);
-        String Caffeine = String.format("%.2f", sData_info[4]);
-        String Kcal = String.format("%.2f", sData_info[5]);
 
-        drinkName.setText(name);
-        drinkFat.setText(Fat);
-        drinkSugar.setText(Sugar);
-        drinkNa.setText(Na);
-        drinkProtein.setText(Protein);
-        drinkCaffein.setText(Caffeine);
-        drinkKcal.setText(Kcal);
+        rsList = rs.list_out();
 
-        tvrmd1.setText(rlist.get(0)+", ");
-        tvrmd2.setText(rlist.get(1)+", ");
-        tvrmd3.setText(rlist.get(3));
-        String img = "@drawable/"+id;
-        int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
-        drinkImg.setImageResource(iResId);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DrinkActivity.this, MegaActivity.class);
+                Intent intent = new Intent(DrinkActivity.this, BackActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+
+        String kcal = String.format("%.2f", values[0]);
+        String fat = String.format("%.2f", values[1]);
+        String protein = String.format("%.2f", values[2]);
+        String na = String.format("%.2f", values[3]);
+        String sugar = String.format("%.2f", values[4]);
+        String caff = String.format("%.2f", values[5]);
+
+        drinkName.setText(name);
+        drinkFat.setText(fat);
+        drinkSugar.setText(sugar);
+        drinkNa.setText(na);
+        drinkProtein.setText(protein);
+        drinkCaffein.setText(caff);
+        drinkKcal.setText(kcal);
+
+        String img = "@drawable/back";
+        int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
+        drinkImg.setImageResource(iResId);
+
+        tvrmd1.setText(rsList.get(0));
+        tvrmd2.setText(rsList.get(1));
+        tvrmd3.setText(rsList.get(2));
+        tvrmd4.setText(rsList.get(3));
+
+        ivRmd1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name = tvrmd1.getText().toString();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+        ivRmd2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name = tvrmd2.getText().toString();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+        ivRmd3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name = tvrmd3.getText().toString();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+        ivRmd4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name = tvrmd4.getText().toString();
+                Intent intent = getIntent();
+                finish();
                 startActivity(intent);
             }
         });
