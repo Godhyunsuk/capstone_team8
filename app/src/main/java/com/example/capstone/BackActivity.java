@@ -2,14 +2,31 @@ package com.example.capstone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.capstone.ConnectDB.SelectData;
+
+import java.util.Iterator;
 
 public class BackActivity extends AppCompatActivity {
     // SelectData 객체를 먼저 생성하여 초기화합니다.
     //COFFEE가 MAP<String,double[]>형태라 변수 잘 만들어서 쓰면 될듯
+
+    String[] backName;
+    int[] backImage;
+    GridView gridview;
     SelectData sd = new SelectData("back","back");
 
     @Override
@@ -26,7 +43,85 @@ public class BackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back);
 
-        System.out.println(sd.COFFEE);
 
+        backName = new String[(sd.COFFEE).size()];
+        backImage = new int[(sd.COFFEE).size()];
+
+        Iterator<String> keys = sd.COFFEE.keySet().iterator();
+
+        int count = 0;
+        while(keys.hasNext()) {
+            backName[count] = keys.next();
+            count++;
+        }
+
+        for(int i=0; i<backName.length; i++){
+            backImage[i] = R.drawable.back;
+        }
+
+        gridview = findViewById(R.id.gridView1);
+        BackAdapter backAdapter = new BackAdapter(BackActivity.this, backName, backImage);
+        gridview.setAdapter(backAdapter);
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(getApplicationContext(), backName[position],Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+
+    }
+
+    public class BackAdapter extends BaseAdapter {
+
+        Context context;
+        LayoutInflater inflater;
+        String[] arrBackName;
+        int[] arrBackImage;
+
+        public BackAdapter(Context context, String[] arrBackName, int[] arrBackImage) {
+            this.context = context;
+            this.arrBackName = arrBackName;
+            this.arrBackImage = arrBackImage;
+        }
+
+        @Override
+        public int getCount() {
+            return arrBackName.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return arrBackName[position];
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup viewGroup) {
+
+            if(inflater == null) {
+                inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            }
+
+            if(view == null) {
+                view = inflater.inflate(R.layout.back_layout, null);
+            }
+
+            ImageView backImage = view.findViewById(R.id.backImage);
+            TextView backName = view.findViewById(R.id.backName);
+
+            backImage.setImageResource(arrBackImage[position]);
+            backName.setText(arrBackName[position]);
+
+            return view;
+        }
     }
 }
