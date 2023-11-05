@@ -17,6 +17,6 @@ public class TomActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tom);
-        System.out.println(sd.COFFEE);
+        System.out.println(sd.CoffeeObject);
     }
 }

@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +13,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.capstone.ConnectDB.SelectData;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import com.example.capstone.VO.Coffee_Object;
 
 public class BackActivity extends AppCompatActivity {
     // SelectData 객체를 먼저 생성하여 초기화합니다.
@@ -31,6 +24,7 @@ public class BackActivity extends AppCompatActivity {
     int[] backImage;
     GridView gridview;
     SelectData sd = new SelectData("back","back");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //비동기화라서 데이터를 불러올때까지 잠시 기달려야함.
@@ -45,14 +39,13 @@ public class BackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back);
 
-        backName = new String[(sd.COFFEE).size()];
-        backImage = new int[(sd.COFFEE).size()];
-
-        Iterator<String> keys = sd.COFFEE.keySet().iterator();
+        backName = new String[(sd.CoffeeObject).length];
+        backImage = new int[(sd.CoffeeObject).length];
 
         int count = 0;
-        while(keys.hasNext()) {
-            backName[count] = keys.next();
+        for(Coffee_Object c : sd.CoffeeObject) {
+            backName[count] = c.getBname();
+            System.out.println(backName[count]);
             count++;
         }
 
@@ -69,7 +62,7 @@ public class BackActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 DrinkActivity.name=backName[position];
-                DrinkActivity.data = new HashMap<String,double[]>(sd.COFFEE);
+                DrinkActivity.CoffeeObject = sd.CoffeeObject;
             }
         });
     }

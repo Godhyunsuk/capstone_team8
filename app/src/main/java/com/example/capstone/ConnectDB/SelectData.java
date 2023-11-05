@@ -3,6 +3,7 @@ package com.example.capstone.ConnectDB;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.capstone.VO.Coffee_Object;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -14,12 +15,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SelectData {
     private String jsonString;
-    public Map<String,double[]> COFFEE = new HashMap<>();
+    public Coffee_Object[] CoffeeObject;
     //Gson gson = new Gson();
     public SelectData(String File, String Brand){
         JsonParse jsonParse = new JsonParse(Brand);      // AsyncTask 생성
@@ -83,31 +82,19 @@ public class SelectData {
         @Override
         protected void onPostExecute(String fromdoInBackgroundString) { // doInBackgroundString에서 return한 값을 받음
             super.onPostExecute(fromdoInBackgroundString);
-            Log.d(TAG,COFFEE.toString());
+            Log.d(TAG,"SUCCESS");
         }
     }
 
-    private void doParse(String TAG) {
-        Map<String,double[]> R_Map = new HashMap<>();
-        try {
-            JSONObject jsonObject = new JSONObject(jsonString);
-            JSONArray jsonArray = jsonObject.getJSONArray(TAG);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject item = jsonArray.getJSONObject(i);
-                String NAME = item.getString("bname");
-                double[] LIST = new double[6];
-                LIST[0] = item.getDouble("kcal");
-                LIST[1] = item.getDouble("fat");
-                LIST[2] = item.getDouble("protein");
-                LIST[3] = item.getDouble("Na");
-                LIST[4] = item.getDouble("suger");
-                LIST[5] = item.getDouble("Caff");
-                R_Map.put(NAME,LIST);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+    private void doParse(String TAG) throws JSONException {
+        JSONObject jsonObject = new JSONObject(jsonString);
+        JSONArray jsonArray = jsonObject.getJSONArray(TAG);
+        Gson gson = new Gson();
+        Coffee_Object[] coffs = new Coffee_Object[jsonArray.length()];
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Coffee_Object cof = gson.fromJson(String.valueOf(jsonArray.getJSONObject(i)), Coffee_Object.class);
+            coffs[i] = cof;
         }
-        COFFEE = R_Map;
+        CoffeeObject = coffs;
     }
 }

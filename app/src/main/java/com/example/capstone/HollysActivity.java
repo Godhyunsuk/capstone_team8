@@ -17,6 +17,6 @@ public class HollysActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hollys);
-        System.out.println(sd.COFFEE);
+        System.out.println(sd.CoffeeObject);
     }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstone.ConnectDB.SelectData;
+import com.example.capstone.VO.Coffee_Object;
 
 
 public class MegaActivity extends AppCompatActivity {
@@ -30,10 +31,12 @@ public class MegaActivity extends AppCompatActivity {
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+        Coffee_Object[] C = sd.CoffeeObject;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mega);
-        System.out.println(sd.COFFEE);
-
+        for(Coffee_Object c : C){
+            System.out.println(c);
+        }
         backBtn = (Button) findViewById(R.id.back);
         MG001 = (ImageView) findViewById(R.id.MG001);
         MG002 = (ImageView) findViewById(R.id.MG002);

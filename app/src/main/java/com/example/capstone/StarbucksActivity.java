@@ -17,6 +17,6 @@ public class StarbucksActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starbucks);
-        System.out.println(sd.COFFEE);
+        System.out.println(sd.CoffeeObject);
     }
 }

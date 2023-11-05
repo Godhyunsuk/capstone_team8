@@ -17,6 +17,6 @@ public class TwsomeActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twsome);
-        System.out.println(sd.COFFEE);
+        System.out.println(sd.CoffeeObject);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.capstone;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import org.apache.commons.collections.map.HashedMap;
-import org.apache.commons.lang3.ObjectUtils;
+import com.example.capstone.VO.Coffee_Object;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class DrinkActivity extends AppCompatActivity {
@@ -27,7 +22,8 @@ public class DrinkActivity extends AppCompatActivity {
     DrinkRecommender dr;
     Recommend_selected rs;
     List<String> rsList;
-    static Map<String,double[]> data;
+    static Coffee_Object[] CoffeeObject;
+    static Map<String,double[]> data = new HashMap<>();
     static String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +47,10 @@ public class DrinkActivity extends AppCompatActivity {
         ivRmd3 = (ImageView) findViewById(R.id.ivRcmd3);
         ivRmd4 = (ImageView) findViewById(R.id.ivRcmd4);
 
+        for(Coffee_Object c : CoffeeObject){
+            double[] s = {c.getKal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
+            data.put(c.getBname(),s);
+        }
 
         double[] values = data.get(name);
         try {

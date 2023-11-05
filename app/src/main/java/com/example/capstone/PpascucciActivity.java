@@ -17,6 +17,6 @@ public class PpascucciActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ppascucci);
-        System.out.println(sd.COFFEE);
+        System.out.println(sd.CoffeeObject);
     }
 }
