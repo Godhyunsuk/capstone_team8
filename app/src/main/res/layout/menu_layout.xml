@@ -8,13 +8,13 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/backImage"/>
+        android:id="@+id/menuImage"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="coffee"
         android:textSize="15dp"
-        android:id="@+id/backName" />
+        android:id="@+id/menuName" />
 
 </LinearLayout>

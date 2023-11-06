@@ -20,8 +20,8 @@ import com.example.capstone.VO.Coffee_Object;
 public class BackActivity extends AppCompatActivity {
     // SelectData 객체를 먼저 생성하여 초기화합니다.
     //COFFEE가 MAP<String,double[]>형태라 변수 잘 만들어서 쓰면 될듯
-    String[] backName;
-    int[] backImage;
+    String[] coffeeName;
+    int[] coffeeImage;
     GridView gridview;
     SelectData sd = new SelectData("back","back");
 
@@ -39,55 +39,54 @@ public class BackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back);
 
-        backName = new String[(sd.CoffeeObject).length];
-        backImage = new int[(sd.CoffeeObject).length];
+        coffeeName = new String[(sd.CoffeeObject).length];
+        coffeeImage = new int[(sd.CoffeeObject).length];
 
         int count = 0;
         for(Coffee_Object c : sd.CoffeeObject) {
-            backName[count] = c.getBname();
-            System.out.println(backName[count]);
+            coffeeName[count] = c.getBname();
             count++;
         }
 
-        for(int i=0; i<backName.length; i++){
-            backImage[i] = R.drawable.back;
+        for(int i=0; i<coffeeName.length; i++){
+            coffeeImage[i] = R.drawable.back;
         }
         gridview = findViewById(R.id.gridView1);
-        BackAdapter backAdapter = new BackAdapter(BackActivity.this, backName, backImage);
-        gridview.setAdapter(backAdapter);
+        MenuAdapter menuAdapter = new MenuAdapter(BackActivity.this, coffeeName, coffeeImage);
+        gridview.setAdapter(menuAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent(BackActivity.this, DrinkActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                DrinkActivity.name=backName[position];
+                DrinkActivity.name=coffeeName[position];
                 DrinkActivity.CoffeeObject = sd.CoffeeObject;
             }
         });
     }
 
-    public class BackAdapter extends BaseAdapter {
+    public class MenuAdapter extends BaseAdapter {
 
         Context context;
         LayoutInflater inflater;
-        String[] arrBackName;
-        int[] arrBackImage;
+        String[] arrCoffeeName;
+        int[] arrCoffeeImage;
 
-        public BackAdapter(Context context, String[] arrBackName, int[] arrBackImage) {
+        public MenuAdapter(Context context, String[] arrCoffeeName, int[] arrCoffeeImage) {
             this.context = context;
-            this.arrBackName = arrBackName;
-            this.arrBackImage = arrBackImage;
+            this.arrCoffeeName = arrCoffeeName;
+            this.arrCoffeeImage = arrCoffeeImage;
         }
 
         @Override
         public int getCount() {
-            return arrBackName.length;
+            return arrCoffeeName.length;
         }
 
         @Override
         public Object getItem(int position) {
-            return arrBackName[position];
+            return arrCoffeeName[position];
         }
 
         @Override
@@ -103,14 +102,14 @@ public class BackActivity extends AppCompatActivity {
             }
 
             if(view == null) {
-                view = inflater.inflate(R.layout.back_layout, null);
+                view = inflater.inflate(R.layout.menu_layout, null);
             }
 
-            ImageView backImage = view.findViewById(R.id.backImage);
-            TextView backName = view.findViewById(R.id.backName);
+            ImageView backImage = view.findViewById(R.id.menuImage);
+            TextView backName = view.findViewById(R.id.menuName);
 
-            backImage.setImageResource(arrBackImage[position]);
-            backName.setText(arrBackName[position]);
+            backImage.setImageResource(arrCoffeeImage[position]);
+            backName.setText(arrCoffeeName[position]);
 
             return view;
         }
