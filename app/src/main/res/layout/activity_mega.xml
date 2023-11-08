@@ -1,100 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MegaActivity">
-    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <GridView
+        android:id="@+id/gridView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFF00">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/back"
-                android:text="back"
-                android:background="#FFFFFF"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="메가커피"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textSize="30dp"/>
-        </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:gravity="center">
-                <TableRow>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp"
-                            android:id="@+id/MG001"
-                            android:src="@drawable/mg004"/>
-                        <TextView
-                            android:id="@+id/drink_name1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="할메가커피"
-                            android:textAlignment="center"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp"
-                            android:id="@+id/MG002"
-                            android:src="@drawable/mg005"/>
-                        <TextView
-                            android:id="@+id/drink_name2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="왕할메가커피"
-                            android:textAlignment="center"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp"
-                            android:id="@+id/MG003"
-                            android:src="@drawable/mg006"/>
-                        <TextView
-                            android:id="@+id/drink_name3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="고흥유자\n하이볼에이드"
-                            android:textAlignment="center"/>
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+        android:gravity="center"
+        android:numColumns="3" >
+    </GridView>
 
-        </ScrollView>
-
-
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
