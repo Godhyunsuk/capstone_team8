@@ -25,6 +25,7 @@ public class DrinkActivity extends AppCompatActivity {
     Recommend_selected rs;
     List<String> rsList;
     CheckBox favorite;
+    static String id;
     static List<String>favoriteList=new ArrayList<>();
     static Coffee_Object[] CoffeeObject;
     static Map<String,double[]> data = new HashMap<>();
@@ -95,7 +96,7 @@ public class DrinkActivity extends AppCompatActivity {
         drinkCaffein.setText(caff);
         drinkKcal.setText(kcal);
 
-        String img = "@drawable/back";
+        String img = "@drawable/"+MenuActivity.brand;
         int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
         drinkImg.setImageResource(iResId);
 
@@ -103,7 +104,10 @@ public class DrinkActivity extends AppCompatActivity {
         tvrmd2.setText(rsList.get(1));
         tvrmd3.setText(rsList.get(2));
         tvrmd4.setText(rsList.get(3));
-
+        ivRmd1.setImageResource(iResId);
+        ivRmd2.setImageResource(iResId);
+        ivRmd3.setImageResource(iResId);
+        ivRmd4.setImageResource(iResId);
         ivRmd1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,19 +144,19 @@ public class DrinkActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(favoriteList.contains(name)){
+        if(favoriteList.contains(id)){
             favorite.setChecked(true);
         }
         favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    if(!favoriteList.contains(name)){
-                        favoriteList.add(name);
+                    if(!favoriteList.contains(id)){
+                        favoriteList.add(id);
                     }
                 }else{
-                    if(favoriteList.contains(name)){
-                        favoriteList.remove(name);
+                    if(favoriteList.contains(id)){
+                        favoriteList.remove(id);
                     }
                 }
             }

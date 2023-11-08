@@ -21,11 +21,12 @@ import com.example.capstone.VO.Coffee_Object;
 public class MenuActivity extends AppCompatActivity {
     // SelectData 객체를 먼저 생성하여 초기화합니다.
     //COFFEE가 MAP<String,double[]>형태라 변수 잘 만들어서 쓰면 될듯
-    String[] backName;
-    int[] backImage;
+    String[] menuName;
+    String[] menuId;
+    int[] menuImage;
     GridView gridview;
     static String brand;
-    Button back;
+    Button backBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //비동기화라서 데이터를 불러올때까지 잠시 기달려야함.
@@ -42,10 +43,11 @@ public class MenuActivity extends AppCompatActivity {
         int lResId = getResources().getIdentifier( layout, "layout", this.getPackageName() );
         super.onCreate(savedInstanceState);
         setContentView(lResId);
-        back = findViewById(R.id.back);
-        backName = new String[(sd.CoffeeObject).length];
-        backImage = new int[(sd.CoffeeObject).length];
-        back.setOnClickListener(new View.OnClickListener() {
+        backBtn = findViewById(R.id.back);
+        menuName = new String[(sd.CoffeeObject).length];
+        menuId = new String[sd.CoffeeObject.length];
+        menuImage = new int[(sd.CoffeeObject).length];
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -54,16 +56,18 @@ public class MenuActivity extends AppCompatActivity {
         int count = 0;
         System.out.println(sd.CoffeeObject[0]);
         for(Coffee_Object c : sd.CoffeeObject) {
-            backName[count] = c.getBname();
+            menuName[count] = c.getBname();
+            menuId[count] = c.getD_id();
             count++;
         }
+        //db에서 이미지 가져올시 수정될 코드
         String img = "@drawable/"+brand;
         int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
-        for(int i=0; i<backName.length; i++){
-            backImage[i] =iResId;
+        for(int i=0; i<menuName.length; i++){
+            menuImage[i] =iResId;
         }
         gridview = findViewById(R.id.gridView1);
-        MenuAdapter menuAdapter = new MenuAdapter(MenuActivity.this, backName, backImage);
+        MenuAdapter menuAdapter = new MenuAdapter(MenuActivity.this, menuName, menuImage);
         gridview.setAdapter(menuAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -71,7 +75,8 @@ public class MenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(MenuActivity.this, DrinkActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                DrinkActivity.name=backName[position];
+                DrinkActivity.name=menuName[position];
+                DrinkActivity.id=menuId[position];
                 DrinkActivity.CoffeeObject = sd.CoffeeObject;
             }
         });
