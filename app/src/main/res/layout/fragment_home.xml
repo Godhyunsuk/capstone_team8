@@ -101,7 +101,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toEndOf="@+id/angelButton"
         app:layout_constraintTop_toBottomOf="@+id/starbucksButton"
-        app:srcCompat="@drawable/hollys" />
+        app:srcCompat="@drawable/hollus" />
     <!--메가커피 이미지 버튼-->
     <ImageButton
         android:id="@+id/megaButton"
@@ -125,7 +125,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toEndOf="@+id/megaButton"
         app:layout_constraintTop_toBottomOf="@+id/composeButton"
-        app:srcCompat="@drawable/ppascucci" />
+        app:srcCompat="@drawable/pascucci" />
     <!--탐앤탐스 이미지 버튼-->
     <ImageButton
         android:id="@+id/tomButton"
@@ -137,7 +137,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toEndOf="@+id/twsomeButton"
         app:layout_constraintTop_toBottomOf="@+id/hollysButton"
-        app:srcCompat="@drawable/tom" />
+        app:srcCompat="@drawable/tomntoms" />
     <!--투썸플레이스 이미지 버튼-->
     <ImageButton
         android:id="@+id/twsomeButton"
@@ -149,7 +149,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/angelButton"
-        app:srcCompat="@drawable/twsome" />
+        app:srcCompat="@drawable/twosome" />
 
     <TextView
         android:id="@+id/textView"

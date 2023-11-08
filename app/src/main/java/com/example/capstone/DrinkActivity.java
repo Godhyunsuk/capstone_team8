@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ public class DrinkActivity extends AppCompatActivity {
     DrinkRecommender dr;
     Recommend_selected rs;
     List<String> rsList;
+    CheckBox favorite;
+    static List<String>favoriteList=new ArrayList<>();
     static Coffee_Object[] CoffeeObject;
     static Map<String,double[]> data = new HashMap<>();
     static String name;
@@ -46,6 +50,7 @@ public class DrinkActivity extends AppCompatActivity {
         ivRmd2 = (ImageView) findViewById(R.id.ivRcmd2);
         ivRmd3 = (ImageView) findViewById(R.id.ivRcmd3);
         ivRmd4 = (ImageView) findViewById(R.id.ivRcmd4);
+        favorite = (CheckBox) findViewById(R.id.favorite);
 
         for(Coffee_Object c : CoffeeObject){
             System.out.println(c.getKcal());
@@ -72,9 +77,7 @@ public class DrinkActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DrinkActivity.this, BackActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+                finish();
             }
         });
         String kcal = String.format("%.2f", values[0]);
@@ -137,6 +140,27 @@ public class DrinkActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        if(favoriteList.contains(name)){
+            favorite.setChecked(true);
+        }
+        favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    if(!favoriteList.contains(name)){
+                        favoriteList.add(name);
+                    }
+                }else{
+                    if(favoriteList.contains(name)){
+                        favoriteList.remove(name);
+                    }
+                }
+            }
+        });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

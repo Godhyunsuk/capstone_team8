@@ -33,27 +33,30 @@ public class HomeFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),BackActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                MenuActivity.brand="back";
             }
         });
 
         starbucksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),StarbucksActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                MenuActivity.brand="starbucks";
 
             }
         });
         ediyaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),EdiyaActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                MenuActivity.brand="ediya";
 
             }
         });
@@ -61,19 +64,20 @@ public class HomeFragment extends Fragment {
         composeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ComposeActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-
+                MenuActivity.brand="compose";
             }
         });
 
         angelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),AngelActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                MenuActivity.brand="angel";
 
             }
         });
@@ -81,50 +85,50 @@ public class HomeFragment extends Fragment {
         hollysButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), HollysActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-
+                MenuActivity.brand="hollus";
             }
         });
 
         megaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MegaActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-
+                MenuActivity.brand="mega";
             }
         });
 
         ppascucciButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PpascucciActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-
+                MenuActivity.brand="pascucci";
             }
         });
 
         tomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),TomActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-
+                MenuActivity.brand="tomntoms";
             }
         });
 
         twsomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TwsomeActivity.class);
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-
+                MenuActivity.brand="twosome";
             }
         });
         return view;

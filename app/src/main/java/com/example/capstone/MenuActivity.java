@@ -3,12 +3,14 @@ package com.example.capstone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,43 +18,61 @@ import android.widget.TextView;
 import com.example.capstone.DAO.SelectData;
 import com.example.capstone.VO.Coffee_Object;
 
-public class EdiyaActivity extends AppCompatActivity {
-
-    String[] coffeeName;
-    int[] coffeeImage;
+public class MenuActivity extends AppCompatActivity {
+    // SelectData 객체를 먼저 생성하여 초기화합니다.
+    //COFFEE가 MAP<String,double[]>형태라 변수 잘 만들어서 쓰면 될듯
+    String[] backName;
+    int[] backImage;
     GridView gridview;
-    SelectData sd = new SelectData("ediya","ediya");
+    static String brand;
+    Button back;
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
+        //비동기화라서 데이터를 불러올때까지 잠시 기달려야함.
+        //안그럼 데이터 불러오기전에 실행되서 값이 안생김.
+        //우선 1초로 둿는데 더 빨리 풀리게 해도 될듯? 잘 모름.
+        SelectData sd = new SelectData(brand,brand);
+
         try{
             Thread.sleep(1000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+        String layout = "@layout/activity_"+brand;
+        int lResId = getResources().getIdentifier( layout, "layout", this.getPackageName() );
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ediya);
-
-        coffeeName = new String[(sd.CoffeeObject).length];
-        coffeeImage = new int[(sd.CoffeeObject).length];
-
+        setContentView(lResId);
+        back = findViewById(R.id.back);
+        backName = new String[(sd.CoffeeObject).length];
+        backImage = new int[(sd.CoffeeObject).length];
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         int count = 0;
+        System.out.println(sd.CoffeeObject[0]);
         for(Coffee_Object c : sd.CoffeeObject) {
-            coffeeName[count] = c.getBname();
+            backName[count] = c.getBname();
             count++;
         }
-
-        for(int i=0; i<coffeeImage.length; i++){
-            coffeeImage[i] = R.drawable.ediya;
+        String img = "@drawable/"+brand;
+        int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
+        for(int i=0; i<backName.length; i++){
+            backImage[i] =iResId;
         }
-
         gridview = findViewById(R.id.gridView1);
-        EdiyaActivity.MenuAdapter menuAdapter = new EdiyaActivity.MenuAdapter(EdiyaActivity.this, coffeeName, coffeeImage);
+        MenuAdapter menuAdapter = new MenuAdapter(MenuActivity.this, backName, backImage);
         gridview.setAdapter(menuAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent(MenuActivity.this, DrinkActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                DrinkActivity.name=backName[position];
+                DrinkActivity.CoffeeObject = sd.CoffeeObject;
             }
         });
     }
@@ -104,7 +124,11 @@ public class EdiyaActivity extends AppCompatActivity {
 
             return view;
         }
+
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
