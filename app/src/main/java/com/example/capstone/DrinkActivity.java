@@ -48,7 +48,9 @@ public class DrinkActivity extends AppCompatActivity {
         ivRmd4 = (ImageView) findViewById(R.id.ivRcmd4);
 
         for(Coffee_Object c : CoffeeObject){
-            double[] s = {c.getKal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
+            System.out.println(c.getKcal());
+            System.out.println(c.getProtein());
+            double[] s = {c.getKcal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
             data.put(c.getBname(),s);
         }
 
@@ -75,7 +77,6 @@ public class DrinkActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         String kcal = String.format("%.2f", values[0]);
         String fat = String.format("%.2f", values[1]);
         String protein = String.format("%.2f", values[2]);

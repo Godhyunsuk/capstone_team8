@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.capstone.ConnectDB.SelectData;
+import com.example.capstone.DAO.SelectData;
 
 public class StarbucksActivity extends AppCompatActivity {
     SelectData sd = new SelectData("starbucks","starbucks");

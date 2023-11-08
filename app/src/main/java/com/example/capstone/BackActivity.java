@@ -14,7 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.capstone.ConnectDB.SelectData;
+import com.example.capstone.DAO.SelectData;
 import com.example.capstone.VO.Coffee_Object;
 
 public class BackActivity extends AppCompatActivity {
@@ -43,9 +43,9 @@ public class BackActivity extends AppCompatActivity {
         backImage = new int[(sd.CoffeeObject).length];
 
         int count = 0;
+        System.out.println(sd.CoffeeObject[0]);
         for(Coffee_Object c : sd.CoffeeObject) {
             backName[count] = c.getBname();
-            System.out.println(backName[count]);
             count++;
         }
 

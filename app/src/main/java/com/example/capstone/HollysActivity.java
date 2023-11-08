@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.capstone.ConnectDB.SelectData;
+import com.example.capstone.DAO.SelectData;
 
 public class HollysActivity extends AppCompatActivity {
     SelectData sd = new SelectData("hollus","hollus");

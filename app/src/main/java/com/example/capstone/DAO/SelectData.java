@@ -1,4 +1,4 @@
-package com.example.capstone.ConnectDB;
+package com.example.capstone.DAO;
 
 import android.os.AsyncTask;
 import android.util.Log;

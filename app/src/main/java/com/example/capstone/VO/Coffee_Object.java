@@ -3,13 +3,12 @@ package com.example.capstone.VO;
 public class Coffee_Object {
     String d_id;
     String bname;
-    double kal;
+    double kcal;
     double fat;
     double protein;
     double Na;
     double suger;
     double Caff;
-    int ord;
     boolean check_like;
 
     @Override
@@ -17,13 +16,12 @@ public class Coffee_Object {
         return "coffee{" +
                 "d_id='" + d_id + '\'' +
                 ", bname='" + bname + '\'' +
-                ", kal=" + kal +
+                ", kal=" + kcal +
                 ", fat=" + fat +
                 ", protein=" + protein +
                 ", Na=" + Na +
                 ", suger=" + suger +
                 ", Caff=" + Caff +
-                ", ord=" + ord +
                 ", check_like=" + check_like +
                 '}';
     }
@@ -44,12 +42,12 @@ public class Coffee_Object {
         this.bname = bname;
     }
 
-    public double getKal() {
-        return kal;
+    public double getKcal() {
+        return kcal;
     }
 
     public void setKal(double kal) {
-        this.kal = kal;
+        this.kcal = kal;
     }
 
     public double getFat() {
@@ -90,14 +88,6 @@ public class Coffee_Object {
 
     public void setCaff(double caff) {
         Caff = caff;
-    }
-
-    public int getOrd() {
-        return ord;
-    }
-
-    public void setOrd(int ord) {
-        this.ord = ord;
     }
 
     public boolean isCheck_like() {
