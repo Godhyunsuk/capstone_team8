@@ -39,21 +39,21 @@ public class BackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back);
 
-        coffeeName = new String[(sd.CoffeeObject).length];
-        coffeeImage = new int[(sd.CoffeeObject).length];
+        backName = new String[(sd.CoffeeObject).length];
+        backImage = new int[(sd.CoffeeObject).length];
 
         int count = 0;
         System.out.println(sd.CoffeeObject[0]);
         for(Coffee_Object c : sd.CoffeeObject) {
-            coffeeName[count] = c.getBname();
+            backName[count] = c.getBname();
             count++;
         }
 
-        for(int i=0; i<coffeeName.length; i++){
-            coffeeImage[i] = R.drawable.back;
+        for(int i=0; i<backName.length; i++){
+            backImage[i] = R.drawable.back;
         }
         gridview = findViewById(R.id.gridView1);
-        MenuAdapter menuAdapter = new MenuAdapter(BackActivity.this, coffeeName, coffeeImage);
+        MenuAdapter menuAdapter = new MenuAdapter(BackActivity.this, backName, backImage);
         gridview.setAdapter(menuAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class BackActivity extends AppCompatActivity {
                 Intent intent = new Intent(BackActivity.this, DrinkActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                DrinkActivity.name=coffeeName[position];
+                DrinkActivity.name=backName[position];
                 DrinkActivity.CoffeeObject = sd.CoffeeObject;
             }
         });
