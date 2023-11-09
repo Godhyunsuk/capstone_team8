@@ -67,17 +67,7 @@ public class CheckNO extends AsyncTask<String, Void, String> {
             int responseCode = connection.getResponseCode();
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
-                String line;
-                String page ="";
-
-                while((line= reader.readLine()) != null){
-                    page += line;
-                }
-                if(connection !=null){
-                    connection.disconnect();
-                }
-                return page;
+                return "SUCCESS";
             } else {
                 if(connection !=null){
                     connection.disconnect();
