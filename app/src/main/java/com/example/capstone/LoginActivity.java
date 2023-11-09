@@ -17,6 +17,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.net.HttpCookie;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,6 +62,20 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
+                            CookieManager cookieManager = new CookieManager();
+                            cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
+                            CookieHandler.setDefault(cookieManager);
+
+                            String cookieString = "emailId=sadasda";
+                            cookieManager.getCookieStore().add(null, HttpCookie.parse(cookieString).get(0));
+                            List<HttpCookie> cookies = cookieManager.getCookieStore().getCookies();
+                            for(HttpCookie c : cookies){
+                                System.out.println(c.getName());
+                                System.out.println(c.getValue());
+                                System.out.println(c.getDomain());
+                                System.out.println(c.getPath());
+                            }
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();

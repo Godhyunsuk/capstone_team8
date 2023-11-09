@@ -29,9 +29,11 @@ public class DrinkData {
         jsonParse.execute();     // AsyncTask 실행
     }
 
+
+
     public class JsonParse extends AsyncTask<String, Void, String> {
         String TAG;
-        String url = "http://43.201.98.166/test.php";
+        String url = "http://43.201.98.166/All_Brand.php";
         ContentValues values;
         public JsonParse(){}
         public JsonParse(ContentValues values){
@@ -68,8 +70,6 @@ public class DrinkData {
                     }
 
                 }
-                System.out.println("1111111111111111111111111");
-                System.out.println(url);
 
                 URL serverURL = new URL(url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) serverURL.openConnection();

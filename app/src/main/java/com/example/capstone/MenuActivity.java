@@ -17,8 +17,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.capstone.DAO.DrinkData;
-import com.example.capstone.DAO.SelectData;
 import com.example.capstone.VO.Coffee_Object;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import java.security.Key;
+import java.util.Date;
 
 public class MenuActivity extends AppCompatActivity {
     // SelectData 객체를 먼저 생성하여 초기화합니다.
@@ -41,6 +46,17 @@ public class MenuActivity extends AppCompatActivity {
         values.put("brand_where", brand_Code);
         DrinkData dd = new DrinkData(values);
 
+        //토큰을 생성하기 위해 진행. Header 부분을 시작.
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // 서명 암호화 알고리즘.
+
+        //토큰의 몬료기간을 설정하기 위해 Data객체를 처리.
+        long curTime = System.currentTimeMillis();
+        Date date = new Date(curTime);
+
+        //String jws = Jwts.builder().setHeaderParam("typ","JWT"); // 토큰 유형
+
+
+
         try{
             Thread.sleep(1000);
         }catch(InterruptedException e){
@@ -61,7 +77,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
         int count = 0;
-        System.out.println(dd.CoffeeObject[0]);
         for(Coffee_Object c : dd.CoffeeObject) {
             menuName[count] = c.getBname();
             menuId[count] = c.getD_id();

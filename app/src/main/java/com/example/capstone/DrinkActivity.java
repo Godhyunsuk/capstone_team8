@@ -1,5 +1,6 @@
 package com.example.capstone;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.example.capstone.DAO.CheckNO;
+import com.example.capstone.DAO.CheckOK;
+import com.example.capstone.DAO.DrinkData;
 import com.example.capstone.VO.Coffee_Object;
 
 import java.util.*;
@@ -30,6 +34,8 @@ public class DrinkActivity extends AppCompatActivity {
     static Coffee_Object[] CoffeeObject;
     static Map<String,double[]> data = new HashMap<>();
     static String name;
+    CheckOK OK;
+    CheckNO NO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +60,6 @@ public class DrinkActivity extends AppCompatActivity {
         favorite = (CheckBox) findViewById(R.id.favorite);
 
         for(Coffee_Object c : CoffeeObject){
-            System.out.println(c.getKcal());
-            System.out.println(c.getProtein());
             double[] s = {c.getKcal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
             data.put(c.getBname(),s);
         }
@@ -152,17 +156,25 @@ public class DrinkActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
                     if(!favoriteList.contains(id)){
+                        ContentValues values =new ContentValues();
+                        values.put("d_id",id);
+                        OK = new CheckOK(values);
+                        OK.execute();
                         favoriteList.add(id);
+
                     }
                 }else{
                     if(favoriteList.contains(id)){
+                        ContentValues values =new ContentValues();
+                        values.put("d_id",id);
+                        NO = new CheckNO(values);
+                        NO.execute();
                         favoriteList.remove(id);
                     }
                 }
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
