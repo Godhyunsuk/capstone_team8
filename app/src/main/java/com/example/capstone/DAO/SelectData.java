@@ -1,5 +1,6 @@
 package com.example.capstone.DAO;
 
+import android.content.ContentValues;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -16,9 +17,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+//혹시 몰라서 남겨둠. 이제 폐기할 예정이고, DrinkData를 통해 값 부를 예정.
 public class SelectData {
     private String jsonString;
     public Coffee_Object[] CoffeeObject;
+    ContentValues values;
     //Gson gson = new Gson();
     public SelectData(String File, String Brand){
         JsonParse jsonParse = new JsonParse(Brand);      // AsyncTask 생성

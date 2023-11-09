@@ -2,6 +2,7 @@ package com.example.capstone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.capstone.DAO.DrinkData;
 import com.example.capstone.DAO.SelectData;
 import com.example.capstone.VO.Coffee_Object;
 
@@ -26,13 +28,18 @@ public class MenuActivity extends AppCompatActivity {
     int[] menuImage;
     GridView gridview;
     static String brand;
+    static String brand_Code;
     Button backBtn;
+    ContentValues values = new ContentValues();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //비동기화라서 데이터를 불러올때까지 잠시 기달려야함.
         //안그럼 데이터 불러오기전에 실행되서 값이 안생김.
         //우선 1초로 둿는데 더 빨리 풀리게 해도 될듯? 잘 모름.
-        SelectData sd = new SelectData(brand,brand);
+
+        values.put("brand_query", brand);
+        values.put("brand_where", brand_Code);
+        DrinkData dd = new DrinkData(values);
 
         try{
             Thread.sleep(1000);
@@ -44,9 +51,9 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(lResId);
         backBtn = findViewById(R.id.back);
-        menuName = new String[(sd.CoffeeObject).length];
-        menuId = new String[sd.CoffeeObject.length];
-        menuImage = new int[(sd.CoffeeObject).length];
+        menuName = new String[(dd.CoffeeObject).length];
+        menuId = new String[dd.CoffeeObject.length];
+        menuImage = new int[(dd.CoffeeObject).length];
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,8 +61,8 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
         int count = 0;
-        System.out.println(sd.CoffeeObject[0]);
-        for(Coffee_Object c : sd.CoffeeObject) {
+        System.out.println(dd.CoffeeObject[0]);
+        for(Coffee_Object c : dd.CoffeeObject) {
             menuName[count] = c.getBname();
             menuId[count] = c.getD_id();
             count++;
@@ -77,7 +84,7 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
                 DrinkActivity.name=menuName[position];
                 DrinkActivity.id=menuId[position];
-                DrinkActivity.CoffeeObject = sd.CoffeeObject;
+                DrinkActivity.CoffeeObject = dd.CoffeeObject;
             }
         });
     }

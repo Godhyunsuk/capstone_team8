@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="back";
+                MenuActivity.brand_Code="BB";
             }
         });
 
@@ -47,7 +48,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="starbucks";
-
+                MenuActivity.brand_Code="SB";
             }
         });
         ediyaButton.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +58,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="ediya";
-
+                MenuActivity.brand_Code="ED";
             }
         });
 
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="compose";
+                MenuActivity.brand_Code="CC";
             }
         });
 
@@ -78,6 +80,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="angel";
+                MenuActivity.brand_Code="AG";
 
             }
         });
@@ -89,6 +92,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="hollus";
+                MenuActivity.brand_Code="HA";
             }
         });
 
@@ -99,6 +103,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="mega";
+                MenuActivity.brand_Code="MG";
             }
         });
 
@@ -109,6 +114,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="pascucci";
+                MenuActivity.brand_Code="PC";
             }
         });
 
@@ -119,6 +125,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="tomntoms";
+                MenuActivity.brand_Code="tt";
             }
         });
 
@@ -129,6 +136,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="twosome";
+                MenuActivity.brand_Code="TW";
             }
         });
         return view;

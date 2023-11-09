@@ -50,8 +50,6 @@ public class RegisterRequest extends AsyncTask<String, Void, String> {
             // URL 설정 및 연결
             URL url = new URL(serverUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            System.out.println("5555555555555555555555555555555");
-            System.out.println(connection);
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Accept-Charset","UTF-8");
             connection.setRequestProperty("Context_Type", "application/x-www-form-urlencoded;charset=UTF-8");
