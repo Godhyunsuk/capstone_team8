@@ -11,12 +11,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.capstone.DAO.All_Data;
+import com.example.capstone.VO.Coffee_Object;
+
 public class HomeFragment extends Fragment {
     ImageButton backButton, starbucksButton, ediyaButton, composeButton, angelButton, hollysButton, megaButton, ppascucciButton, tomButton, twsomeButton;
+    All_Data ALL = new All_Data();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        for(Coffee_Object c : ALL.CoffeeObject){
 
+        }
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
         backButton = (ImageButton) view.findViewById(R.id.backButton);

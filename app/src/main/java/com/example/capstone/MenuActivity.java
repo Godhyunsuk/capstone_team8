@@ -58,7 +58,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
         try{
-            Thread.sleep(1000);
+            Thread.sleep(50);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -85,6 +85,7 @@ public class MenuActivity extends AppCompatActivity {
         //db에서 이미지 가져올시 수정될 코드
         String img = "@drawable/"+brand;
         int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
+
         for(int i=0; i<menuName.length; i++){
             menuImage[i] =iResId;
         }
