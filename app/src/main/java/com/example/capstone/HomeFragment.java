@@ -1,6 +1,8 @@
 package com.example.capstone;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,9 @@ public class HomeFragment extends Fragment {
         ppascucciButton = (ImageButton) view.findViewById(R.id.ppascucciButton);
         tomButton = (ImageButton) view.findViewById(R.id.tomButton);
         twsomeButton = (ImageButton) view.findViewById(R.id.twsomeButton);
+        SharedPreferences pref = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        System.out.println("11111111111111111111111");
+        System.out.println(pref.getString("token",""));
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
