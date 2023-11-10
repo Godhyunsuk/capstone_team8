@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,17 +46,6 @@ public class MenuActivity extends AppCompatActivity {
         values.put("brand_query", brand);
         values.put("brand_where", brand_Code);
         DrinkData dd = new DrinkData(values);
-
-        //토큰을 생성하기 위해 진행. Header 부분을 시작.
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // 서명 암호화 알고리즘.
-
-        //토큰의 몬료기간을 설정하기 위해 Data객체를 처리.
-        long curTime = System.currentTimeMillis();
-        Date date = new Date(curTime);
-
-        //String jws = Jwts.builder().setHeaderParam("typ","JWT"); // 토큰 유형
-
-
 
         try{
             Thread.sleep(1000);
