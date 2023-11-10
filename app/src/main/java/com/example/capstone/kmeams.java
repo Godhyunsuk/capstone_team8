@@ -13,6 +13,7 @@ import weka.core.DenseInstance;
 import weka.core.Instances;
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 class DrinkRecommender {
     private Instances data;
@@ -71,37 +72,41 @@ class Recommend_selected {
 
 class Recommend_favorite{
     List<String> recommend_favorite = new ArrayList<>();
+    double[] favorite_centroid = new double[6];
     public Recommend_favorite(List<String> favorite_list,Map<String,double[]> drink_data){
         int size = favorite_list.size();
-        double[] favorite_centroid = new double[]{0,0,0,0,0,0};
         for(int i = 0 ; i < favorite_list.size() ; i++){
             double[] values = drink_data.get(favorite_list.get(i));
             for(int j=0;j<6;j++){
-                favorite_centroid[i]=values[j]/size;
+                favorite_centroid[j]+=values[j]/size;
             }
         }
+    }
+    public Recommend_favorite(double[] centroid,Map<String,double[]> drink_data){
         Iterator<String> keys = drink_data.keySet().iterator();
         Map<String, Double> data = new HashMap<>();
         while(keys.hasNext()){
             String key = keys.next();
-            double[] list = drink_data.get(key);
+            double[] list = drink_data.get(key).clone();
             Double temp = 0.0;
-            for(int i = 0;i < favorite_centroid.length;i++){
-                temp += Math.abs(list[i] - favorite_centroid[i]);
+            for(int i = 0;i < centroid.length;i++){
+                temp += Math.abs(list[i] - centroid[i]);
             }
             data.put(key,temp);
+
         }
-        List<Double> keySet = new ArrayList<>(data.values());
-        keySet.sort(Double::compareTo);
-        Iterator<String> datakeys = data.keySet().iterator();
+        List<Map.Entry<String, Double>> entryList = new LinkedList<>(data.entrySet());
+        entryList.sort(Map.Entry.comparingByValue());
+
         int cnt=0;
-        while(datakeys.hasNext() && cnt<10){
-            String datakey = keys.next();
-            recommend_favorite.add(datakey);
-            cnt+=1;
+        for(Map.Entry<String, Double> entry : entryList){
+            recommend_favorite.add(entry.getKey());
+            cnt++;
+            if(cnt>=10){break;}
         }
     }
-    public List<String> list_out(Map<String,double[]> drink_data){
+    public double[] getC() {return favorite_centroid;}
+    public List<String> list_out(){
         return recommend_favorite;
     }
 }
