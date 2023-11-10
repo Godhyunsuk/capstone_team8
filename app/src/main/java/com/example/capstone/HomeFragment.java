@@ -13,12 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.capstone.DAO.All_Data;
-import com.example.capstone.VO.Coffee_Object;
-
 public class HomeFragment extends Fragment {
     ImageButton backButton, starbucksButton, ediyaButton, composeButton, angelButton, hollysButton, megaButton, ppascucciButton, tomButton, twsomeButton;
-    All_Data ALL = new All_Data();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,9 +22,6 @@ public class HomeFragment extends Fragment {
             Thread.sleep(1000);
         }catch(InterruptedException e){
             e.printStackTrace();
-        }
-        for(Coffee_Object c : ALL.CoffeeObject){
-
         }
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
@@ -42,9 +35,8 @@ public class HomeFragment extends Fragment {
         ppascucciButton = (ImageButton) view.findViewById(R.id.ppascucciButton);
         tomButton = (ImageButton) view.findViewById(R.id.tomButton);
         twsomeButton = (ImageButton) view.findViewById(R.id.twsomeButton);
+
         SharedPreferences pref = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-        System.out.println("11111111111111111111111");
-        System.out.println(pref.getString("token",""));
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
