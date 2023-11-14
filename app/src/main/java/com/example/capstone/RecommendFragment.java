@@ -78,7 +78,7 @@ public class RecommendFragment extends Fragment {
             fvalues.put("brand_where", brand_Codes[i]);
             DrinkData fdd = new DrinkData(fvalues);
             try{
-                Thread.sleep(50);
+                Thread.sleep(500);
             }catch(InterruptedException e){
                 e.printStackTrace();
             }

@@ -48,7 +48,7 @@ public class MenuActivity extends AppCompatActivity {
         DrinkData dd = new DrinkData(values);
 
         try{
-            Thread.sleep(50);
+            Thread.sleep(1000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
