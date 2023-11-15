@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 public class FavoriteFragment extends Fragment {
 
     ListView listView;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class FavoriteFragment extends Fragment {
         if(!DrinkActivity.favoriteList.isEmpty()) {
             listView.setVisibility(View.VISIBLE);
         }
-
         return view;
     }
 }

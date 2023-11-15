@@ -18,11 +18,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        try{
-            Thread.sleep(1000);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
+
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
         backButton = (ImageButton) view.findViewById(R.id.backButton);

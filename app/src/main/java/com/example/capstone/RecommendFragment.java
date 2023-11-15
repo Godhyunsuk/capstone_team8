@@ -53,7 +53,7 @@ public class RecommendFragment extends Fragment {
         String[] brand_Codes = {"BB","SB","ED","CC","AG","HA","MG","PC","tt","TW"};
 
         try{
-            Thread.sleep(500);
+            Thread.sleep(1000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -70,20 +70,22 @@ public class RecommendFragment extends Fragment {
             List<String> flist = new ArrayList<>();
             Map<String,double[]> fdata = new HashMap<String,double[]>();
             Map<String,String> id_name = new HashMap<String,String>();
-            String[] names = new String[10];
-            String[] ids = new String[10];
-            int[] Imgs = new int[10];
+            String[] names = new String[6];
+            String[] ids = new String[6];
+            int[] Imgs = new int[6];
 
             fvalues.put("brand_query", brands[i]);
             fvalues.put("brand_where", brand_Codes[i]);
-            DrinkData fdd = new DrinkData(fvalues);
-            try{
-                Thread.sleep(500);
-            }catch(InterruptedException e){
-                e.printStackTrace();
+            List<Coffee_Object> fdd=new ArrayList<>();
+            for(Coffee_Object c : All.CoffeeObject){
+                String code = String.valueOf(c.getD_id().charAt(0))+String.valueOf(c.getD_id().charAt(1));
+                if(code.equals(brand_Codes[i])){
+                    fdd.add(c);
+                }
             }
+            Coffee_Object[] fd = fdd.toArray(new Coffee_Object[fdd.size()]);
 
-            for(Coffee_Object c : fdd.CoffeeObject){
+            for(Coffee_Object c : fd){
                 double[] s = {c.getKcal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
                 fdata.put(c.getD_id(),s);
                 id_name.put(c.getD_id(),c.getBname());
@@ -91,16 +93,13 @@ public class RecommendFragment extends Fragment {
             String img = "@drawable/"+brands[i];
             int iResId = getResources().getIdentifier( img, "drawable","com.example.capstone");
 
-            for(int j=0;j<10;j++){
+            for(int j=0;j<6;j++){
                 Imgs[j] = iResId;
             }
 
             Recommend_favorite fr = new Recommend_favorite(fcentroid,fdata);
             flist = fr.list_out();
-            System.out.println(DrinkActivity.favoriteList);
-            for(int j=0;j<5;j++){
-                System.out.println(flist);
-            }
+
             int cnt = 0;
             for(String f : flist){
                 names[cnt] = id_name.get(f);
@@ -119,13 +118,19 @@ public class RecommendFragment extends Fragment {
                     MenuActivity.brand=brands[finalI];
                     DrinkActivity.name=names[position];
                     DrinkActivity.id=ids[position];
-                    DrinkActivity.CoffeeObject = fdd.CoffeeObject;
+                    DrinkActivity.CoffeeObject = fd;
                 }
             });
             rvs[i].setAdapter(adapter);
             rvs[i].setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
-
+            if (DrinkActivity.favoriteList.isEmpty()) {
+                rvs[i].setVisibility(View.INVISIBLE);
+            }else{
+                rvs[i].setVisibility(View.VISIBLE);
+            }
         }
+
+
         return view;
     }
 

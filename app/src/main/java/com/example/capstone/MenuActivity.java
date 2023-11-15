@@ -42,6 +42,7 @@ public class MenuActivity extends AppCompatActivity {
     static String brand;
     static String brand_Code;
     Button backBtn;
+
     ContentValues values = new ContentValues();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,9 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+
         SearchView searchView = findViewById(R.id.searchView);
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
