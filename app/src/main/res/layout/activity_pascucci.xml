@@ -76,6 +76,16 @@
             android:background="@drawable/x" />
 
     </LinearLayout>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="검색"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"/>
+
     <LinearLayout
         android:layout_width="150dp"
         android:layout_height="30dp"

@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
             app:srcCompat="@drawable/back"/>
+
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
@@ -44,6 +45,16 @@
             />
 
     </LinearLayout>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="검색"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"/>
+
    <LinearLayout
        android:layout_width="150dp"
        android:layout_height="30dp"
@@ -52,6 +63,7 @@
        android:layout_marginLeft="20dp"
        android:layout_marginRight="20dp"
        >
+
 
        <TextView
            android:id="@+id/textView15"
