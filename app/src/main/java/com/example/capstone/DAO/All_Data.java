@@ -45,9 +45,7 @@ public class All_Data {
             try {
                 URL serverURL = new URL(url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) serverURL.openConnection();
-                System.out.println(serverURL);
                 int responseStatusCode = httpURLConnection.getResponseCode();
-                System.out.println(responseStatusCode);
                 if(responseStatusCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(),"UTF-8"));
                     StringBuilder sb = new StringBuilder();

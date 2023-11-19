@@ -53,7 +53,7 @@ public class RecommendFragment extends Fragment {
         String[] brand_Codes = {"BB","SB","ED","CC","AG","HA","MG","PC","tt","TW"};
 
         try{
-            Thread.sleep(500);
+            Thread.sleep(1000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -78,7 +78,7 @@ public class RecommendFragment extends Fragment {
             fvalues.put("brand_where", brand_Codes[i]);
             DrinkData fdd = new DrinkData(fvalues);
             try{
-                Thread.sleep(50);
+                Thread.sleep(200);
             }catch(InterruptedException e){
                 e.printStackTrace();
             }

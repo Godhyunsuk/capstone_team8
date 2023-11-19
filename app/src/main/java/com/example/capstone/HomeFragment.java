@@ -1,5 +1,7 @@
 package com.example.capstone;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,16 +15,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.capstone.DAO.Check_and_Find;
+import com.example.capstone.Unit.Session_Unit;
+
+import java.security.Key;
+import java.util.Base64;
+
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
 public class HomeFragment extends Fragment {
     ImageButton backButton, starbucksButton, ediyaButton, composeButton, angelButton, hollysButton, megaButton, ppascucciButton, tomButton, twsomeButton;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        try{
-            Thread.sleep(1000);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
+
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
         backButton = (ImageButton) view.findViewById(R.id.backButton);
@@ -36,8 +44,21 @@ public class HomeFragment extends Fragment {
         tomButton = (ImageButton) view.findViewById(R.id.tomButton);
         twsomeButton = (ImageButton) view.findViewById(R.id.twsomeButton);
 
-        SharedPreferences pref = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
+        Session_Unit JWS = new Session_Unit(pref.getString("Id",""));
+        System.out.println(pref.getString("Id",""));
+        System.out.println(JWS.jws);
+        System.out.println(JWS.key);
+        System.out.println(JWS.getMemberEmail());
 
+        Check_and_Find CAF = new Check_and_Find(pref.getString("Id",""));
+        CAF.execute();
+
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

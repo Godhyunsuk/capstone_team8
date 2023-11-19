@@ -48,10 +48,12 @@ public class MenuActivity extends AppCompatActivity {
         DrinkData dd = new DrinkData(values);
 
         try{
-            Thread.sleep(50);
+            Thread.sleep(1000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+
+
         String layout = "@layout/activity_"+brand;
         int lResId = getResources().getIdentifier( layout, "layout", this.getPackageName() );
         super.onCreate(savedInstanceState);

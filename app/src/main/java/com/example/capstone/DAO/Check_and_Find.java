@@ -2,6 +2,15 @@ package com.example.capstone.DAO;
 
 import android.content.ContentValues;
 import android.os.AsyncTask;
+import android.util.Log;
+
+import com.example.capstone.VO.mysql_User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,59 +21,43 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-public class CheckOK extends AsyncTask<String, Void, String> {
-    ContentValues values;
-    public CheckOK(ContentValues values){
-        this.values = values;
+public class Check_and_Find extends AsyncTask<String, Void, String> {
+    String value;
+    String jsonString;
+    mysql_User user = new mysql_User();
+    public Check_and_Find(String value){
+        this.value = value;
     }
+
     @Override
     protected String doInBackground(String... params) {
         try {
-
             // PHP 서버의 URL
-            String serverUrl = "http://43.201.98.166/Checked.php";
+            String serverUrl = "http://43.201.98.166/Check_and_Find.php?emailId="+value;
             StringBuffer sbParams = new StringBuffer();
-            if(values == null){
-                sbParams.append("");
-            }else{
-                boolean isAnd= false;
-                String key;
-                String value;
 
-                for(Map.Entry<String,Object> parameter : values.valueSet()){
-                    key = parameter.getKey();
-                    value = parameter.getValue().toString();
-                    System.out.println(key);
-                    System.out.println(value);
-                    if(isAnd){
-                        sbParams.append("&");
-                    }
-                    sbParams.append(key).append("=").append(value);
-
-                    if(!isAnd){
-                        if(values.size() >=2){
-                            isAnd=true;
-                        }
-                    }
-                }
-            }
-                   // URL 설정 및 연결
+            // URL 설정 및 연결
             URL url = new URL(serverUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept-Charset","UTF-8");
             connection.setRequestProperty("Context_Type", "application/x-www-form-urlencoded;charset=UTF-8");
-            String strParams = sbParams.toString();
-
-            // POST 데이터를 서버로 보냄
-            OutputStream os = connection.getOutputStream();
-            os.write(strParams.getBytes("UTF-8"));
-            os.flush();
-            os.close();
+            System.out.println(url);
             // 응답 코드 확인
             int responseCode = connection.getResponseCode();
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line= reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                reader.close();
+                Log.d("values", sb.toString().trim());
+                jsonString = sb.toString().trim();
+                doParse();
                 return "SUCCESS";
             } else {
                 if(connection !=null){
@@ -82,5 +75,12 @@ public class CheckOK extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         System.out.println(result);
+    }
+
+    private void doParse() throws JSONException{
+        JSONObject jsonObject = new JSONObject(jsonString);
+        Gson gson = new Gson();
+        user = gson.fromJson(jsonString,mysql_User.class);
+        System.out.println(user.getEmailId());
     }
 }
