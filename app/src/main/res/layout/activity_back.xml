@@ -1,21 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
-    <Button
-        android:layout_width="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FFE80A"
+        android:elevation="25dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            app:srcCompat="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/jalnan"
+            android:text="빽다방"
+            android:textColor="#071F60"
+            android:textSize="65dp" />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/back"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFE80A"
+            android:background="@drawable/x"/>
+
+    </LinearLayout>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:text="BACK"/>
+        android:iconifiedByDefault="false"
+        android:queryHint="검색"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"/>
+
+   <LinearLayout
+       android:layout_width="371dp"
+       android:layout_height="30dp"
+       android:background="@drawable/menulayout"
+       android:layout_marginTop="20dp"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp"
+       >
+
+
+       <TextView
+           android:id="@+id/textView15"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
+           android:fontFamily="@font/jalnan"
+           android:gravity="center"
+           android:text="M E N U"
+           android:textColor="#000000" />
+       <SearchView
+           android:layout_margin="5dp"
+           android:layout_width="300dp"
+           android:layout_height="wrap_content"
+           android:id="@+id/search"/>
+   </LinearLayout>
+
     <GridView
         android:id="@+id/gridView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+
+        android:background="@drawable/menulayout"
+        android:columnWidth="10dp"
         android:gravity="center"
-        android:numColumns="3" >
+        android:horizontalSpacing="5dp"
+        android:numColumns="3"
+        android:verticalSpacing="5dp">
     </GridView>
+
 
 </LinearLayout>

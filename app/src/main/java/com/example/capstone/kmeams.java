@@ -102,7 +102,7 @@ class Recommend_favorite{
         for(Map.Entry<String, Double> entry : entryList){
             recommend_favorite.add(entry.getKey());
             cnt++;
-            if(cnt>=10){break;}
+            if(cnt>=6){break;}
         }
     }
     public double[] getC() {return favorite_centroid;}

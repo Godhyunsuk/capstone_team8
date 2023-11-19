@@ -15,16 +15,22 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.capstone.DAO.DrinkData;
 import com.example.capstone.VO.Coffee_Object;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class MenuActivity extends AppCompatActivity {
     // SelectData 객체를 먼저 생성하여 초기화합니다.
@@ -36,6 +42,7 @@ public class MenuActivity extends AppCompatActivity {
     static String brand;
     static String brand_Code;
     Button backBtn;
+
     ContentValues values = new ContentValues();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +102,26 @@ public class MenuActivity extends AppCompatActivity {
                 DrinkActivity.CoffeeObject = dd.CoffeeObject;
             }
         });
+
+
+        SearchView searchView = findViewById(R.id.searchView);
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // 필요하면 검색어 제출 시의 동작을 추가할 수 있음
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // 검색어가 변경될 때마다 호출되는 부분
+                menuAdapter.filter(newText);
+                return true;
+            }
+        });
+
     }
 
     public class MenuAdapter extends BaseAdapter {
@@ -103,11 +130,19 @@ public class MenuActivity extends AppCompatActivity {
         LayoutInflater inflater;
         String[] arrCoffeeName;
         int[] arrCoffeeImage;
+        String[] filteredCoffeeName; //추가
+        int[] filteredCoffeeImage; //추가
 
         public MenuAdapter(Context context, String[] arrCoffeeName, int[] arrCoffeeImage) {
             this.context = context;
             this.arrCoffeeName = arrCoffeeName;
             this.arrCoffeeImage = arrCoffeeImage;
+        }
+
+        public void updateData(String[] names, int[] images) { //추가
+            arrCoffeeName = names;
+            arrCoffeeImage = images;
+            notifyDataSetChanged();
         }
 
         @Override
@@ -145,7 +180,30 @@ public class MenuActivity extends AppCompatActivity {
             return view;
         }
 
+        public void filter(String query) {
+            query = query.toLowerCase(); // Locale.getDefault() 제거
+
+            ArrayList<String> filteredNames = new ArrayList<>();
+            ArrayList<Integer> filteredImages = new ArrayList<>();
+            System.out.println(query);
+            for (int i = 0; i < menuName.length; i++) {
+                if (menuName[i].toLowerCase().contains(query)) {
+                    filteredNames.add(menuName[i]);
+                    filteredImages.add(menuImage[i]);
+
+                }
+            }
+            System.out.println(filteredNames.size());
+
+
+            // 필터링된 결과를 저장하고 어댑터를 업데이트
+            filteredCoffeeName = filteredNames.toArray(new String[filteredNames.size()]);
+            filteredCoffeeImage = ArrayUtils.toPrimitive(filteredImages.toArray(new Integer[filteredNames.size()]));
+            updateData(filteredCoffeeName, filteredCoffeeImage);
+        }
     }
+
+
 
     @Override
     public void onBackPressed() {

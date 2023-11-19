@@ -1,21 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="10dp">
-    <Button
-        android:layout_width="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#111546"
+        android:backgroundTint="#000000"
+        android:elevation="25dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            app:srcCompat="@drawable/twosome"
+            />
+
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#2F2826"
+                android:fontFamily="@font/jalnan"
+                android:gravity="center"
+                android:text="A TWOSOME PLACE"
+                android:textColor="#FFFFFF"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#2F2826"
+                android:fontFamily="@font/jalnan"
+                android:gravity="center"
+                android:text="COFFEE &amp; DESSERT"
+                android:textColor="#FFFFFF"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+
+            android:background="@drawable/x" />
+
+    </LinearLayout>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:text="BACK"/>
+        android:iconifiedByDefault="false"
+        android:queryHint="검색"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:background="@drawable/menulayout2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#2F2826"
+            android:fontFamily="@font/jalnan"
+            android:gravity="center"
+            android:text="M E N U"
+            android:textColor="#000000" />
+    </LinearLayout>
     <GridView
         android:id="@+id/gridView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/menulayout"
+        android:columnWidth="10dp"
         android:gravity="center"
-        android:numColumns="3" >
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:verticalSpacing="10dp">
     </GridView>
+
 
 </LinearLayout>
