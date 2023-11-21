@@ -167,7 +167,7 @@ public class DrinkActivity extends AppCompatActivity {
 
                     }
                 }else{
-                    if(!User.getLike_List().contains(id)){
+                    if(User.getLike_List().contains(id)){
                         ContentValues values =new ContentValues();
                         values.put("d_id",id);
                         NO = new CheckNO(values);
