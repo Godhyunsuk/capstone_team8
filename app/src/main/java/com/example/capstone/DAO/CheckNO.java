@@ -57,7 +57,6 @@ public class CheckNO extends AsyncTask<String, Void, String> {
             connection.setRequestProperty("Accept-Charset","UTF-8");
             connection.setRequestProperty("Context_Type", "application/x-www-form-urlencoded;charset=UTF-8");
             String strParams = sbParams.toString();
-
             // POST 데이터를 서버로 보냄
             OutputStream os = connection.getOutputStream();
             os.write(strParams.getBytes("UTF-8"));

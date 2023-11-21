@@ -15,7 +15,7 @@ import io.jsonwebtoken.security.Keys;
 public class Session_Unit {
     String emailId;
     Claims claims = Jwts.claims();
-    public static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     public static String jws;
 
     public Session_Unit(String emailId){

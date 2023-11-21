@@ -2,7 +2,6 @@ package com.example.capstone;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,16 +16,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.capstone.DAO.Check_and_Find;
 import com.example.capstone.Unit.Session_Unit;
+import com.example.capstone.VO.mysql_User;
 
 import java.security.Key;
-import java.util.Base64;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 public class HomeFragment extends Fragment {
     ImageButton backButton, starbucksButton, ediyaButton, composeButton, angelButton, hollysButton, megaButton, ppascucciButton, tomButton, twsomeButton;
-
+    static mysql_User User;
+    public static final Key keys = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,20 +45,25 @@ public class HomeFragment extends Fragment {
         twsomeButton = (ImageButton) view.findViewById(R.id.twsomeButton);
 
         SharedPreferences pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
-        Session_Unit JWS = new Session_Unit(pref.getString("Id",""));
-        System.out.println(pref.getString("Id",""));
-        System.out.println(JWS.jws);
-        System.out.println(JWS.key);
-        System.out.println(JWS.getMemberEmail());
-
-        Check_and_Find CAF = new Check_and_Find(pref.getString("Id",""));
-        CAF.execute();
-
+        SharedPreferences.Editor editor = pref.edit();
+        System.out.println(User.getLike_List());
+        System.out.println(User.getEmailId());
+        System.out.println("111111111111111");
         try{
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+
+        Session_Unit JWS = new Session_Unit(pref.getString("Id",""));
+        try{
+            System.out.println(User.getLike_List());
+            System.out.println(User.getEmailId());
+        }catch(Exception e){
+            System.out.println("유저 오류입니당");
+        }
+
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,5 +174,17 @@ public class HomeFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("exitttttt");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        System.out.println("Stoppppppp");
     }
 }

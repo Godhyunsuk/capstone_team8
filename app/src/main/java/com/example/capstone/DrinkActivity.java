@@ -18,6 +18,7 @@ import com.example.capstone.DAO.CheckNO;
 import com.example.capstone.DAO.CheckOK;
 import com.example.capstone.DAO.DrinkData;
 import com.example.capstone.VO.Coffee_Object;
+import com.example.capstone.VO.mysql_User;
 
 import java.util.*;
 
@@ -29,8 +30,10 @@ public class DrinkActivity extends AppCompatActivity {
     Recommend_selected rs;
     List<String> rsList;
     CheckBox favorite;
+    static ArrayList<String> favoriteList = new ArrayList<>();
+    static mysql_User User = HomeFragment.User;
     static String id;
-    static List<String>favoriteList=new ArrayList<>();
+
     static Coffee_Object[] CoffeeObject;
     static Map<String,double[]> data = new HashMap<>();
     static String name;
@@ -58,7 +61,8 @@ public class DrinkActivity extends AppCompatActivity {
         ivRmd3 = (ImageView) findViewById(R.id.ivRcmd3);
         ivRmd4 = (ImageView) findViewById(R.id.ivRcmd4);
         favorite = (CheckBox) findViewById(R.id.favorite);
-
+        System.out.println(User.getEmailId());
+        System.out.println(User.getLike_List());
         for(Coffee_Object c : CoffeeObject){
             double[] s = {c.getKcal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
             data.put(c.getBname(),s);
@@ -148,28 +152,28 @@ public class DrinkActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(favoriteList.contains(id)){
+        if(User.getLike_List().contains(id)){
             favorite.setChecked(true);
         }
         favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    if(!favoriteList.contains(id)){
+                    if(!User.getLike_List().contains(id)){
                         ContentValues values =new ContentValues();
                         values.put("d_id",id);
                         OK = new CheckOK(values);
                         OK.execute();
-                        favoriteList.add(id);
+                        User.addLike_List(id);
 
                     }
                 }else{
-                    if(favoriteList.contains(id)){
+                    if(!User.getLike_List().contains(id)){
                         ContentValues values =new ContentValues();
                         values.put("d_id",id);
                         NO = new CheckNO(values);
                         NO.execute();
-                        favoriteList.remove(id);
+                        User.removeLike_List(id);
                     }
                 }
             }
@@ -178,5 +182,11 @@ public class DrinkActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        System.out.println("Stoppppppp");
     }
 }

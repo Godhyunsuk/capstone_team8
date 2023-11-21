@@ -19,14 +19,17 @@ import java.io.OutputStreamWriter;
 import java.io.BufferedWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Check_and_Find extends AsyncTask<String, Void, String> {
     String value;
     String jsonString;
-    mysql_User user = new mysql_User();
+    public mysql_User user = new mysql_User();
     public Check_and_Find(String value){
         this.value = value;
+        this.execute();
     }
 
     @Override
@@ -80,7 +83,20 @@ public class Check_and_Find extends AsyncTask<String, Void, String> {
     private void doParse() throws JSONException{
         JSONObject jsonObject = new JSONObject(jsonString);
         Gson gson = new Gson();
-        user = gson.fromJson(jsonString,mysql_User.class);
-        System.out.println(user.getEmailId());
+        user = gson.fromJson(String.valueOf(jsonObject),mysql_User.class);
+        if((user.getEmailId())==null){
+            user.setEmailId("");
+            user.setLike_List(new ArrayList<>());
+        }else{
+            String inputs = user.getEmailId().replaceAll("([\\[\\]' '])","");
+            user.setEmailId(inputs);
+            String[] arg = user.getEmailId().split("m");
+            ArrayList<String> args = new ArrayList<>();
+            for(String qwe : arg){
+                args.add(qwe);
+            }
+            user.setLike_List(args);
+        }
+
     }
 }

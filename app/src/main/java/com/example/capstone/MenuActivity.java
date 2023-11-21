@@ -35,6 +35,7 @@ import java.util.Locale;
 public class MenuActivity extends AppCompatActivity {
     // SelectData 객체를 먼저 생성하여 초기화합니다.
     //COFFEE가 MAP<String,double[]>형태라 변수 잘 만들어서 쓰면 될듯
+    public static final Key keys = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     String[] menuName;
     String[] menuId;
     int[] menuImage;

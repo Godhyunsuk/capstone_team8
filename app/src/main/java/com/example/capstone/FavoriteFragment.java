@@ -21,7 +21,7 @@ public class FavoriteFragment extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.flistView);
 
-        if(!DrinkActivity.favoriteList.isEmpty()) {
+        if(!HomeFragment.User.getLike_List().isEmpty()) {
             listView.setVisibility(View.VISIBLE);
         }
         return view;

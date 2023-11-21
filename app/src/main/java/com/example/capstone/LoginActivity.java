@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.capstone.DAO.Check_and_Find;
 import com.example.capstone.DAO.RegisterRequest;
 import com.example.capstone.Unit.Session_Unit;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONObject;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -76,11 +79,20 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
 
-
+                            Session_Unit JWS = new Session_Unit(strEmail);
                             SharedPreferences pref = getSharedPreferences("pref",MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
+
+                            Check_and_Find CAF = new Check_and_Find(strEmail);
+                            try{
+                                Thread.sleep(500);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
                             editor.putString("Id",strEmail);
                             editor.commit();
+
+                            HomeFragment.User= CAF.user;
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
