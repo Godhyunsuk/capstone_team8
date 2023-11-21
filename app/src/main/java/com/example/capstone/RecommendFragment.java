@@ -32,7 +32,6 @@ public class RecommendFragment extends Fragment {
     double[] fcentroid;
     Map<String ,double[]> data = new HashMap<>();
     All_Data All = new All_Data();
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,7 +51,11 @@ public class RecommendFragment extends Fragment {
         String[] brands = {"back","starbucks","ediya","compose","angel",
                 "hollus","mega","pascucci","tomntoms","twosome"};
         String[] brand_Codes = {"BB","SB","ED","CC","AG","HA","MG","PC","tt","TW"};
-
+        List<String> favoriteList = FavoriteFragment.FavoriteList;
+        if(favoriteList.get(0).isEmpty()){
+            favoriteList=favoriteList.subList(1,favoriteList.size());
+        }
+        System.out.println(favoriteList);
         try{
             Thread.sleep(1000);
         }catch(InterruptedException e){
@@ -63,7 +66,7 @@ public class RecommendFragment extends Fragment {
             data.put(c.getD_id(),s);
 
         }
-        Recommend_favorite rf = new Recommend_favorite(FavoriteFragment.FavoriteList,data);
+        Recommend_favorite rf = new Recommend_favorite(favoriteList,data);
         fcentroid = rf.getC();
 
         for(int i=0;i<10;i++){
@@ -124,7 +127,7 @@ public class RecommendFragment extends Fragment {
             });
             rvs[i].setAdapter(adapter);
             rvs[i].setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
-            if (FavoriteFragment.FavoriteList.isEmpty()) {
+            if (favoriteList.isEmpty()) {
                 rvs[i].setVisibility(View.INVISIBLE);
             }else{
                 rvs[i].setVisibility(View.VISIBLE);

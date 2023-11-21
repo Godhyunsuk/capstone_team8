@@ -37,7 +37,10 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite,container,false);
         listView = (ListView) view.findViewById(R.id.flistView);
-        if(!HomeFragment.User.getLike_List().isEmpty()) {
+        if(FavoriteList.get(0).isEmpty()){
+            FavoriteList=FavoriteList.subList(1,FavoriteList.size());
+        }
+        if(FavoriteList.isEmpty()) {
             listView.setVisibility(View.VISIBLE);
         }
         try{
@@ -45,6 +48,7 @@ public class FavoriteFragment extends Fragment {
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+
         favoriteName = new String[FavoriteList.size()];
         favoriteImage = new int[FavoriteList.size()];
 

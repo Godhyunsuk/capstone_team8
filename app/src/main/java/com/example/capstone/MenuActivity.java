@@ -61,7 +61,6 @@ public class MenuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         String layout = "@layout/activity_"+brand;
         int lResId = getResources().getIdentifier( layout, "layout", this.getPackageName() );
         super.onCreate(savedInstanceState);

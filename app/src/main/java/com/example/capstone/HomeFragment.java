@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         Session_Unit JWS = new Session_Unit(pref.getString("Id",""));
         try{
             System.out.println(User.getLike_List());
-            System.out.println(User.getEmailId());
+            System.out.println(FavoriteFragment.FavoriteList.size());
         }catch(Exception e){
             System.out.println("유저 오류입니당");
         }
@@ -121,7 +121,7 @@ public class HomeFragment extends Fragment {
         angelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MenuActivity.class);
+                Intent intent = new Intent(getActivity(),AngelActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="angel";
