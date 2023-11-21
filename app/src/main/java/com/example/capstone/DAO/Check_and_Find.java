@@ -88,9 +88,9 @@ public class Check_and_Find extends AsyncTask<String, Void, String> {
             user.setEmailId("");
             user.setLike_List(new ArrayList<>());
         }else{
-            String inputs = user.getEmailId().replaceAll("([\\[\\]' '])","");
+            String inputs = user.getEmailId().replaceAll("[\\[\\]\" ]","");
             user.setEmailId(inputs);
-            String[] arg = user.getEmailId().split("m");
+            String[] arg = user.getEmailId().split(",");
             ArrayList<String> args = new ArrayList<>();
             for(String qwe : arg){
                 args.add(qwe);

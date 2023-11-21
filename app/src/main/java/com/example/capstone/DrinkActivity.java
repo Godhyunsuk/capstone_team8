@@ -30,7 +30,6 @@ public class DrinkActivity extends AppCompatActivity {
     Recommend_selected rs;
     List<String> rsList;
     CheckBox favorite;
-    static ArrayList<String> favoriteList = new ArrayList<>();
     static mysql_User User = HomeFragment.User;
     static String id;
 
@@ -178,6 +177,7 @@ public class DrinkActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     @Override
     public void onBackPressed() {

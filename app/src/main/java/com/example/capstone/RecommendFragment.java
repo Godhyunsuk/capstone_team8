@@ -32,6 +32,7 @@ public class RecommendFragment extends Fragment {
     double[] fcentroid;
     Map<String ,double[]> data = new HashMap<>();
     All_Data All = new All_Data();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class RecommendFragment extends Fragment {
             data.put(c.getD_id(),s);
 
         }
-        Recommend_favorite rf = new Recommend_favorite(DrinkActivity.favoriteList,data);
+        Recommend_favorite rf = new Recommend_favorite(FavoriteFragment.FavoriteList,data);
         fcentroid = rf.getC();
 
         for(int i=0;i<10;i++){
@@ -123,7 +124,7 @@ public class RecommendFragment extends Fragment {
             });
             rvs[i].setAdapter(adapter);
             rvs[i].setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
-            if (DrinkActivity.favoriteList.isEmpty()) {
+            if (FavoriteFragment.FavoriteList.isEmpty()) {
                 rvs[i].setVisibility(View.INVISIBLE);
             }else{
                 rvs[i].setVisibility(View.VISIBLE);

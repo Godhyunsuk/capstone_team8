@@ -11,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FavoriteFragment extends Fragment {
+import java.util.List;
 
+public class FavoriteFragment extends Fragment {
+    static List<String> FavoriteList;
     ListView listView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite,container,false);
-
         listView = (ListView) view.findViewById(R.id.flistView);
-
         if(!HomeFragment.User.getLike_List().isEmpty()) {
             listView.setVisibility(View.VISIBLE);
         }

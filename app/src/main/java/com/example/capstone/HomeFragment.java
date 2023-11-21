@@ -13,26 +13,33 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.capstone.DAO.All_Data;
 
 import com.example.capstone.DAO.Check_and_Find;
 import com.example.capstone.Unit.Session_Unit;
 import com.example.capstone.VO.mysql_User;
 
 import java.security.Key;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 public class HomeFragment extends Fragment {
+    RecyclerView rvRand;
     ImageButton backButton, starbucksButton, ediyaButton, composeButton, angelButton, hollysButton, megaButton, ppascucciButton, tomButton, twsomeButton;
     static mysql_User User;
     public static final Key keys = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        All_Data All = new All_Data();
 
         View view = inflater.inflate(R.layout.fragment_home,container,false);
-
+        rvRand = (RecyclerView)view.findViewById(R.id.rvRand);
         backButton = (ImageButton) view.findViewById(R.id.backButton);
         starbucksButton = (ImageButton) view.findViewById(R.id.starbucksButton);
         ediyaButton = (ImageButton) view.findViewById(R.id.ediyaButton);
@@ -43,18 +50,15 @@ public class HomeFragment extends Fragment {
         ppascucciButton = (ImageButton) view.findViewById(R.id.ppascucciButton);
         tomButton = (ImageButton) view.findViewById(R.id.tomButton);
         twsomeButton = (ImageButton) view.findViewById(R.id.twsomeButton);
-
         SharedPreferences pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        System.out.println(User.getLike_List());
-        System.out.println(User.getEmailId());
-        System.out.println("111111111111111");
+
         try{
             Thread.sleep(500);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
-
+        FavoriteFragment.FavoriteList = User.getLike_List();
         Session_Unit JWS = new Session_Unit(pref.getString("Id",""));
         try{
             System.out.println(User.getLike_List());
@@ -63,6 +67,12 @@ public class HomeFragment extends Fragment {
             System.out.println("유저 오류입니당");
         }
 
+
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +95,7 @@ public class HomeFragment extends Fragment {
                 MenuActivity.brand_Code="SB";
             }
         });
+
         ediyaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
