@@ -52,10 +52,6 @@ public class RecommendFragment extends Fragment {
                 "hollus","mega","pascucci","tomntoms","twosome"};
         String[] brand_Codes = {"BB","SB","ED","CC","AG","HA","MG","PC","tt","TW"};
         List<String> favoriteList = FavoriteFragment.FavoriteList;
-        if(favoriteList.get(0).isEmpty()){
-            favoriteList=favoriteList.subList(1,favoriteList.size());
-        }
-        System.out.println(favoriteList);
         try{
             Thread.sleep(1000);
         }catch(InterruptedException e){

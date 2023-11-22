@@ -2,9 +2,11 @@ package com.example.capstone;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,9 @@ import com.example.capstone.DAO.Check_and_Find;
 import com.example.capstone.Unit.Session_Unit;
 import com.example.capstone.VO.mysql_User;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +37,11 @@ public class HomeFragment extends Fragment {
     RecyclerView rvRand;
     ImageButton backButton, starbucksButton, ediyaButton, composeButton, angelButton, hollysButton, megaButton, ppascucciButton, tomButton, twsomeButton;
     static mysql_User User;
-    public static final Key keys = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        All_Data All = new All_Data();
-
         View view = inflater.inflate(R.layout.fragment_home,container,false);
         rvRand = (RecyclerView)view.findViewById(R.id.rvRand);
         backButton = (ImageButton) view.findViewById(R.id.backButton);
@@ -50,29 +54,11 @@ public class HomeFragment extends Fragment {
         ppascucciButton = (ImageButton) view.findViewById(R.id.ppascucciButton);
         tomButton = (ImageButton) view.findViewById(R.id.tomButton);
         twsomeButton = (ImageButton) view.findViewById(R.id.twsomeButton);
-        SharedPreferences pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-
-        try{
-            Thread.sleep(500);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
-        FavoriteFragment.FavoriteList = User.getLike_List();
-        Session_Unit JWS = new Session_Unit(pref.getString("Id",""));
-        try{
-            System.out.println(User.getLike_List());
-            System.out.println(FavoriteFragment.FavoriteList.size());
-        }catch(Exception e){
-            System.out.println("유저 오류입니당");
-        }
-
-
-        try{
-            Thread.sleep(1000);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
+        pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
+        editor = pref.edit();
+        FavoriteFragment.FavoriteList= User.getLike_List();
+        System.out.println("Home");
+        System.out.println(User.getLike_List());
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,17 +171,24 @@ public class HomeFragment extends Fragment {
             }
         });
         return view;
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        System.out.println("exitttttt");
-    }
 
+    }
     @Override
     public void onStop() {
         super.onStop();
-        System.out.println("Stoppppppp");
+        try{
+            JSONArray jsonArray = new JSONArray();
+            for(String str : User.getLike_List()){
+                jsonArray.put(str);
+            }
+            String jsonString = jsonArray.toString();
+            Log.d("HomeFragment",jsonString);
+            editor.putString("LL",jsonString);
+            editor.commit();
+        }catch(Exception e){
+            System.out.println("유저 오류입니당");
+        }
     }
+
 }

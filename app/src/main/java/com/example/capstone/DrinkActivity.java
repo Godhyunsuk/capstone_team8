@@ -3,6 +3,7 @@ package com.example.capstone;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -60,8 +61,9 @@ public class DrinkActivity extends AppCompatActivity {
         ivRmd3 = (ImageView) findViewById(R.id.ivRcmd3);
         ivRmd4 = (ImageView) findViewById(R.id.ivRcmd4);
         favorite = (CheckBox) findViewById(R.id.favorite);
-        System.out.println(User.getEmailId());
-        System.out.println(User.getLike_List());
+        Log.d("DrinkActivity",User.getEmailId());
+        System.out.println("Drink");
+        System.out.println(HomeFragment.User.getLike_List());
         for(Coffee_Object c : CoffeeObject){
             double[] s = {c.getKcal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
             data.put(c.getBname(),s);
@@ -151,28 +153,28 @@ public class DrinkActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(User.getLike_List().contains(id)){
+        if(HomeFragment.User.getLike_List().contains(id)){
             favorite.setChecked(true);
         }
         favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    if(!User.getLike_List().contains(id)){
+                    if(!HomeFragment.User.getLike_List().contains(id)){
                         ContentValues values =new ContentValues();
                         values.put("d_id",id);
-                        OK = new CheckOK(values);
-                        OK.execute();
-                        User.addLike_List(id);
+                        //OK = new CheckOK(values);
+                        //OK.execute();
+                        HomeFragment.User.addLike_List(id);
 
                     }
                 }else{
-                    if(User.getLike_List().contains(id)){
+                    if(HomeFragment.User.getLike_List().contains(id)){
                         ContentValues values =new ContentValues();
                         values.put("d_id",id);
-                        NO = new CheckNO(values);
-                        NO.execute();
-                        User.removeLike_List(id);
+                        //NO = new CheckNO(values);
+                        //NO.execute();
+                        HomeFragment.User.removeLike_List(id);
                     }
                 }
             }
@@ -182,11 +184,5 @@ public class DrinkActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        System.out.println("Stoppppppp");
     }
 }

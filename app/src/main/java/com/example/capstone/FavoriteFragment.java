@@ -37,9 +37,7 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite,container,false);
         listView = (ListView) view.findViewById(R.id.flistView);
-        if(FavoriteList.get(0).isEmpty()){
-            FavoriteList=FavoriteList.subList(1,FavoriteList.size());
-        }
+
         if(FavoriteList.isEmpty()) {
             listView.setVisibility(View.VISIBLE);
         }

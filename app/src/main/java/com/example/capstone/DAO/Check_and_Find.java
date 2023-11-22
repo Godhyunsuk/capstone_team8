@@ -96,6 +96,9 @@ public class Check_and_Find extends AsyncTask<String, Void, String> {
                 args.add(qwe);
             }
             user.setLike_List(args);
+            if(args.get(0) == ""){
+                args.remove(0);
+            }
         }
 
     }
