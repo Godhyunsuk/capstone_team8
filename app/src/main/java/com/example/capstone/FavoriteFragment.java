@@ -1,10 +1,12 @@
 package com.example.capstone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -28,9 +30,10 @@ public class FavoriteFragment extends Fragment {
     static List<String> FavoriteList;
     String[] favoriteName;
     int[] favoriteImage;
+    String[] favoriteId;
     ListView listView;
     All_Data All = new All_Data();
-    Map<String ,double[]> data = new HashMap<>();
+
 
     @Nullable
     @Override
@@ -38,7 +41,7 @@ public class FavoriteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite,container,false);
         listView = (ListView) view.findViewById(R.id.flistView);
 
-        if(FavoriteList.isEmpty()) {
+        if(!FavoriteList.isEmpty()) {
             listView.setVisibility(View.VISIBLE);
         }
         try{
@@ -49,6 +52,7 @@ public class FavoriteFragment extends Fragment {
 
         favoriteName = new String[FavoriteList.size()];
         favoriteImage = new int[FavoriteList.size()];
+        favoriteId = new String[FavoriteList.size()];
 
         for(Coffee_Object c : All.CoffeeObject){
             for(int i=0; i<favoriteName.length; i++){
@@ -60,12 +64,32 @@ public class FavoriteFragment extends Fragment {
 
         }
 
+        for(Coffee_Object c : All.CoffeeObject){
+            for(int i=0; i<favoriteId.length; i++){
+                if(c.getD_id().equals(FavoriteList.get(i))){
+                    favoriteId[i] = c.getD_id();
+                }
+            }
+        }
+
         for(int i=0; i< FavoriteList.size(); i++){
             favoriteImage[i] = R.drawable.back;
         }
 
         FavoriteAdapter favoriteAdapter = new FavoriteAdapter(FavoriteFragment.this,favoriteName,favoriteImage);
         listView.setAdapter(favoriteAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent(getActivity(), DrinkActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                DrinkActivity.name=favoriteName[position];
+                DrinkActivity.id=favoriteId[position];
+                DrinkActivity.CoffeeObject = All.CoffeeObject;
+            }
+        });
 
         return view;
     }
@@ -107,7 +131,7 @@ public class FavoriteFragment extends Fragment {
             }
 
             if (view == null) {
-                view = inflater.inflate(R.layout.menu_layout, null);
+                view = inflater.inflate(R.layout.menu_layout3, null);
             }
 
             ImageView backImage = view.findViewById(R.id.menuImage);
