@@ -15,12 +15,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.bumptech.glide.Glide;
 import com.example.capstone.DAO.CheckNO;
 import com.example.capstone.DAO.CheckOK;
 import com.example.capstone.DAO.DrinkData;
 import com.example.capstone.VO.Coffee_Object;
 import com.example.capstone.VO.mysql_User;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 public class DrinkActivity extends AppCompatActivity {
@@ -33,9 +36,10 @@ public class DrinkActivity extends AppCompatActivity {
     CheckBox favorite;
     static mysql_User User = HomeFragment.User;
     static String id;
-
+    ImageView[] ivRmds;
+    TextView[] tvrmds;
     static Coffee_Object[] CoffeeObject;
-    static Map<String,double[]> data = new HashMap<>();
+    Map<String,double[]> data;
     static String name;
     CheckOK OK;
     CheckNO NO;
@@ -60,13 +64,18 @@ public class DrinkActivity extends AppCompatActivity {
         ivRmd2 = (ImageView) findViewById(R.id.ivRcmd2);
         ivRmd3 = (ImageView) findViewById(R.id.ivRcmd3);
         ivRmd4 = (ImageView) findViewById(R.id.ivRcmd4);
+        ivRmds = new ImageView[]{ivRmd1, ivRmd2, ivRmd3, ivRmd4};
+        tvrmds = new TextView[]{tvrmd1, tvrmd2, tvrmd3, tvrmd4};
         favorite = (CheckBox) findViewById(R.id.favorite);
+        Map<String,String> findId = new HashMap<>();
+        data = new HashMap<>();
         Log.d("DrinkActivity",User.getEmailId());
         System.out.println("Drink");
         System.out.println(HomeFragment.User.getLike_List());
         for(Coffee_Object c : CoffeeObject){
             double[] s = {c.getKcal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
             data.put(c.getBname(),s);
+            findId.put(c.getBname(),c.getD_id());
         }
 
         double[] values = data.get(name);
@@ -81,7 +90,6 @@ public class DrinkActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         rsList = rs.list_out();
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -105,54 +113,36 @@ public class DrinkActivity extends AppCompatActivity {
         drinkCaffein.setText(caff);
         drinkKcal.setText(kcal);
 
-        String img = "@drawable/"+MenuActivity.brand;
-        int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
-        drinkImg.setImageResource(iResId);
+        try {
+            URL uri = new URL("http://43.201.98.166/test/"+id+".png");
+            Glide.with(DrinkActivity.this).load(uri).into(drinkImg);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
-        tvrmd1.setText(rsList.get(0));
-        tvrmd2.setText(rsList.get(1));
-        tvrmd3.setText(rsList.get(2));
-        tvrmd4.setText(rsList.get(3));
-        ivRmd1.setImageResource(iResId);
-        ivRmd2.setImageResource(iResId);
-        ivRmd3.setImageResource(iResId);
-        ivRmd4.setImageResource(iResId);
-        ivRmd1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name = tvrmd1.getText().toString();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
+        for (int i=0;i<ivRmds.length;i++){
+            TextView tvrmd = tvrmds[i];
+            tvrmd.setText(rsList.get(i));
+            try {
+                URL uri = new URL("http://43.201.98.166/test/"+findId.get(rsList.get(i))+".png");
+                Glide.with(DrinkActivity.this).load(uri).into(ivRmds[i]);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
-        });
-        ivRmd2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name = tvrmd2.getText().toString();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-            }
-        });
-        ivRmd3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name = tvrmd3.getText().toString();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-            }
-        });
-        ivRmd4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name = tvrmd4.getText().toString();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-            }
-        });
+            int finalI = i;
+            ivRmds[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    Intent intent = new Intent(DrinkActivity.this, DrinkActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    name=tvrmds[finalI].getText().toString();
+                    id=findId.get(rsList.get(finalI));
+                }
+            });
+        }
+
         if(HomeFragment.User.getLike_List().contains(id)){
             favorite.setChecked(true);
         }

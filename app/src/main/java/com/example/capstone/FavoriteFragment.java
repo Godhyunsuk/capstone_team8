@@ -18,9 +18,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.MenuAdapter;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.capstone.DAO.All_Data;
 import com.example.capstone.VO.Coffee_Object;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -58,25 +61,14 @@ public class FavoriteFragment extends Fragment {
             for(int i=0; i<favoriteName.length; i++){
                 if(c.getD_id().equals(FavoriteList.get(i))){
                     favoriteName[i] = c.getBname();
-                    System.out.println(favoriteName[i]);
-                }
-            }
-
-        }
-
-        for(Coffee_Object c : All.CoffeeObject){
-            for(int i=0; i<favoriteId.length; i++){
-                if(c.getD_id().equals(FavoriteList.get(i))){
                     favoriteId[i] = c.getD_id();
                 }
             }
+
         }
 
-        for(int i=0; i< FavoriteList.size(); i++){
-            favoriteImage[i] = R.drawable.back;
-        }
 
-        FavoriteAdapter favoriteAdapter = new FavoriteAdapter(FavoriteFragment.this,favoriteName,favoriteImage);
+        FavoriteAdapter favoriteAdapter = new FavoriteAdapter(FavoriteFragment.this,favoriteName,favoriteId);
         listView.setAdapter(favoriteAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,9 +91,9 @@ public class FavoriteFragment extends Fragment {
         Context context;
         LayoutInflater inflater;
         String[] arrBackName;
-        int[] arrBackImage;
+        String[] arrBackImage;
 
-        public FavoriteAdapter(Fragment fragment, String[] arrBackName, int[] arrBackImage) {
+        public FavoriteAdapter(Fragment fragment, String[] arrBackName, String[] arrBackImage) {
             // Use fragment's context
             this.context = fragment.getActivity();
             this.arrBackName = arrBackName;
@@ -136,8 +128,12 @@ public class FavoriteFragment extends Fragment {
 
             ImageView backImage = view.findViewById(R.id.menuImage);
             TextView backName = view.findViewById(R.id.menuName);
-
-            backImage.setImageResource(arrBackImage[position]);
+            try {
+                URL uri = new URL("http://43.201.98.166/test/"+arrBackImage[position]+".png");
+                Glide.with(context).load(uri).into(backImage);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
             backName.setText(arrBackName[position]);
 
             return view;

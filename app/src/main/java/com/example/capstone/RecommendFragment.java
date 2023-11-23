@@ -17,11 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.capstone.DAO.All_Data;
 import com.example.capstone.DAO.DrinkData;
 import com.example.capstone.DAO.SelectData;
 import com.example.capstone.VO.Coffee_Object;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,13 +75,12 @@ public class RecommendFragment extends Fragment {
             Map<String,String> id_name = new HashMap<String,String>();
             String[] names = new String[6];
             String[] ids = new String[6];
-            int[] Imgs = new int[6];
 
             fvalues.put("brand_query", brands[i]);
             fvalues.put("brand_where", brand_Codes[i]);
             List<Coffee_Object> fdd=new ArrayList<>();
             for(Coffee_Object c : All.CoffeeObject){
-                String code = String.valueOf(c.getD_id().charAt(0))+String.valueOf(c.getD_id().charAt(1));
+                String code = c.getD_id().substring(0,2);
                 if(code.equals(brand_Codes[i])){
                     fdd.add(c);
                 }
@@ -89,12 +91,6 @@ public class RecommendFragment extends Fragment {
                 double[] s = {c.getKcal(),c.getFat(),c.getProtein(),c.getNa(),c.getSuger(),c.getCaff()};
                 fdata.put(c.getD_id(),s);
                 id_name.put(c.getD_id(),c.getBname());
-            }
-            String img = "@drawable/"+brands[i];
-            int iResId = getResources().getIdentifier( img, "drawable","com.example.capstone");
-
-            for(int j=0;j<6;j++){
-                Imgs[j] = iResId;
             }
 
             Recommend_favorite fr = new Recommend_favorite(fcentroid,fdata);
@@ -107,7 +103,7 @@ public class RecommendFragment extends Fragment {
                 cnt++;
             }
 
-            Adapter adapter = new Adapter(getContext(),names,Imgs);
+            Adapter adapter = new Adapter(getContext(),names,ids);
             int finalI = i;
             adapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
@@ -115,10 +111,10 @@ public class RecommendFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), DrinkActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
-                    MenuActivity.brand=brands[finalI];
                     DrinkActivity.name=names[position];
                     DrinkActivity.id=ids[position];
                     DrinkActivity.CoffeeObject = fd;
+                    System.out.println(fd[0].getD_id());
                 }
             });
             rvs[i].setAdapter(adapter);
@@ -139,11 +135,11 @@ public class RecommendFragment extends Fragment {
         private Context context;
         private String[] name;
         OnItemClickListener listener;
-        int[] Img;
-        public Adapter(Context context, String[] name, int[] Img){
+        String[] Id;
+        public Adapter(Context context, String[] name, String[] Img){
             this.context = context;
             this.name = name;
-            this.Img = Img;
+            this.Id = Img;
         }
         @Override   // 아이템의 개수 리턴
         public int getItemCount() { return name.length; }
@@ -161,7 +157,7 @@ public class RecommendFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.setItem(name[position],Img[position]);
+            holder.setItem(name[position],Id[position]);
         }
 
         @Override
@@ -190,9 +186,14 @@ public class RecommendFragment extends Fragment {
                 });
 
             }
-            void setItem(String name,int img) {
+            void setItem(String name,String id) {
                 textView.setText(name);
-                Img.setImageResource(img);
+                try {
+                    URL uri = new URL("http://43.201.98.166/test/"+id+".png");
+                    Glide.with(context).load(uri).into(Img);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

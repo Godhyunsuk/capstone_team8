@@ -42,7 +42,6 @@ public class MenuActivity extends AppCompatActivity {
     public static final Key keys = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     String[] menuName;
     String[] menuId;
-    int[] menuImage;
     GridView gridview;
     static String brand;
     static String brand_Code;
@@ -72,7 +71,6 @@ public class MenuActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.back);
         menuName = new String[(dd.CoffeeObject).length];
         menuId = new String[dd.CoffeeObject.length];
-        menuImage = new int[(dd.CoffeeObject).length];
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,9 +87,6 @@ public class MenuActivity extends AppCompatActivity {
         String img = "@drawable/"+brand;
         int iResId = getResources().getIdentifier( img, "drawable", this.getPackageName() );
 
-        for(int i=0; i<menuName.length; i++){
-            menuImage[i] =iResId;
-        }
         gridview = findViewById(R.id.gridView1);
         MenuAdapter menuAdapter = new MenuAdapter(MenuActivity.this, menuName, menuId);
         gridview.setAdapter(menuAdapter);
@@ -107,9 +102,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-
         SearchView searchView = findViewById(R.id.searchView);
-
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -193,26 +186,23 @@ public class MenuActivity extends AppCompatActivity {
             query = query.toLowerCase(); // Locale.getDefault() 제거
 
             ArrayList<String> filteredNames = new ArrayList<>();
-            ArrayList<Integer> filteredImages = new ArrayList<>();
+            ArrayList<String> filteredImages = new ArrayList<>();
             System.out.println(query);
             for (int i = 0; i < menuName.length; i++) {
                 if (menuName[i].toLowerCase().contains(query)) {
                     filteredNames.add(menuName[i]);
-                    filteredImages.add(menuImage[i]);
+                    filteredImages.add(menuId[i]);
 
                 }
             }
-            System.out.println(filteredNames.size());
 
 
             // 필터링된 결과를 저장하고 어댑터를 업데이트
             filteredCoffeeName = filteredNames.toArray(new String[filteredNames.size()]);
-            filteredCoffeeImage = filteredNames.toArray(filteredImages.toArray(new String[filteredNames.size()]));
+            filteredCoffeeImage = filteredImages.toArray(new String[filteredImages.size()]);
             updateData(filteredCoffeeName, filteredCoffeeImage);
         }
     }
-
-
 
     @Override
     public void onBackPressed() {

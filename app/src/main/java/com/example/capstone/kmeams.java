@@ -50,18 +50,22 @@ class DrinkRecommender {
     }
 }
 class Recommend_selected {
-    List<String> recommendlist;
+    List<String> recommendlist = new ArrayList<>();
     public  Recommend_selected(DrinkRecommender ans,Map<String,double []> drink_data,String selected) throws Exception {
+
         Iterator<String> keys = drink_data.keySet().iterator();
-        recommendlist = new ArrayList<>();
         int selected_cluster = ans.get_cluster(drink_data.get(selected));
+        int cnt = 0;
         while(keys.hasNext()){
+            cnt++;
             String key = keys.next();
             if(ans.get_cluster(drink_data.get(key)) == selected_cluster){
                 recommendlist.add(key);
+
             }
         }
         Collections.shuffle(recommendlist);
+
     }
 
     public List<String> list_out(){
