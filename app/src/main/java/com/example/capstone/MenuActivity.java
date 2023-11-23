@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.capstone.DAO.DrinkData;
 import com.example.capstone.VO.Coffee_Object;
 
@@ -27,6 +28,9 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
@@ -89,7 +93,7 @@ public class MenuActivity extends AppCompatActivity {
             menuImage[i] =iResId;
         }
         gridview = findViewById(R.id.gridView1);
-        MenuAdapter menuAdapter = new MenuAdapter(MenuActivity.this, menuName, menuImage);
+        MenuAdapter menuAdapter = new MenuAdapter(MenuActivity.this, menuName, menuId);
         gridview.setAdapter(menuAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -129,17 +133,17 @@ public class MenuActivity extends AppCompatActivity {
         Context context;
         LayoutInflater inflater;
         String[] arrCoffeeName;
-        int[] arrCoffeeImage;
+        String[] arrCoffeeImage;
         String[] filteredCoffeeName; //추가
-        int[] filteredCoffeeImage; //추가
+        String[] filteredCoffeeImage; //추가
 
-        public MenuAdapter(Context context, String[] arrCoffeeName, int[] arrCoffeeImage) {
+        public MenuAdapter(Context context, String[] arrCoffeeName, String[] arrCoffeeImage) {
             this.context = context;
             this.arrCoffeeName = arrCoffeeName;
             this.arrCoffeeImage = arrCoffeeImage;
         }
 
-        public void updateData(String[] names, int[] images) { //추가
+        public void updateData(String[] names, String[] images) { //추가
             arrCoffeeName = names;
             arrCoffeeImage = images;
             notifyDataSetChanged();
@@ -173,8 +177,13 @@ public class MenuActivity extends AppCompatActivity {
 
             ImageView backImage = view.findViewById(R.id.menuImage);
             TextView backName = view.findViewById(R.id.menuName);
+            try {
+                URL uri = new URL("http://43.201.98.166/test/"+arrCoffeeImage[position]+".png");
+                Glide.with(context).load(uri).into(backImage);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
 
-            backImage.setImageResource(arrCoffeeImage[position]);
             backName.setText(arrCoffeeName[position]);
 
             return view;
@@ -198,7 +207,7 @@ public class MenuActivity extends AppCompatActivity {
 
             // 필터링된 결과를 저장하고 어댑터를 업데이트
             filteredCoffeeName = filteredNames.toArray(new String[filteredNames.size()]);
-            filteredCoffeeImage = ArrayUtils.toPrimitive(filteredImages.toArray(new Integer[filteredNames.size()]));
+            filteredCoffeeImage = filteredNames.toArray(filteredImages.toArray(new String[filteredNames.size()]));
             updateData(filteredCoffeeName, filteredCoffeeImage);
         }
     }
