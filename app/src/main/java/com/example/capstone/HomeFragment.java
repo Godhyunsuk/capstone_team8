@@ -156,7 +156,7 @@ public class HomeFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 MenuActivity.brand="tomntoms";
-                MenuActivity.brand_Code="tt";
+                MenuActivity.brand_Code="TT";
             }
         });
 
