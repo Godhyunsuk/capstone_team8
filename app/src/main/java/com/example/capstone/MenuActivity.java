@@ -115,6 +115,17 @@ public class MenuActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 // 검색어가 변경될 때마다 호출되는 부분
                 menuAdapter.filter(newText);
+                gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        Intent intent = new Intent(MenuActivity.this, DrinkActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+                        DrinkActivity.name=menuAdapter.nameArr()[position];
+                        DrinkActivity.id=menuAdapter.imgArr()[position];
+                        DrinkActivity.CoffeeObject = dd.CoffeeObject;
+                    }
+                });
                 return true;
             }
         });
@@ -140,6 +151,12 @@ public class MenuActivity extends AppCompatActivity {
             arrCoffeeName = names;
             arrCoffeeImage = images;
             notifyDataSetChanged();
+        }
+        public String[] nameArr(){
+            return arrCoffeeName;
+        }
+        public String[] imgArr(){
+            return arrCoffeeImage;
         }
 
         @Override
