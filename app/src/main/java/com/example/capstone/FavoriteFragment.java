@@ -24,6 +24,7 @@ import com.example.capstone.VO.Coffee_Object;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -36,7 +37,6 @@ public class FavoriteFragment extends Fragment {
     String[] favoriteId;
     ListView listView;
     All_Data All = new All_Data();
-
 
     @Nullable
     @Override
@@ -79,7 +79,15 @@ public class FavoriteFragment extends Fragment {
                 startActivity(intent);
                 DrinkActivity.name=favoriteName[position];
                 DrinkActivity.id=favoriteId[position];
-                DrinkActivity.CoffeeObject = All.CoffeeObject;
+                String BrandCode = favoriteId[position].substring(0,2);
+                List<Coffee_Object> co = new ArrayList<>();
+                for(Coffee_Object c : All.CoffeeObject){
+                    if(BrandCode.equals(c.getD_id().substring(0,2))){
+                        co.add(c);
+                    }
+                }
+                Coffee_Object[] fd = co.toArray(new Coffee_Object[co.size()]);
+                DrinkActivity.CoffeeObject = fd;
             }
         });
 
