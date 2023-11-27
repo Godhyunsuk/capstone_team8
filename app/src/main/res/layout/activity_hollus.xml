@@ -49,50 +49,52 @@
 
     </LinearLayout>
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="검색"
-        android:layout_margin="8dp"
-        android:layout_gravity="center"/>
 
     <LinearLayout
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@drawable/menulayout2"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/menulayout1"
         >
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="#2F2826"
             android:fontFamily="@font/jalnan"
             android:gravity="center"
             android:text="M E N U"
             android:textColor="#000000" />
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:iconifiedByDefault="false"
+            android:queryHint="검색" />
     </LinearLayout>
+
     <GridView
         android:id="@+id/gridView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
 
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/menulayout"
+
+
         android:columnWidth="10dp"
         android:gravity="center"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="5dp"
         android:numColumns="3"
-        android:verticalSpacing="10dp">
+        android:verticalSpacing="5dp">
     </GridView>
+
+
 
 
 </LinearLayout>

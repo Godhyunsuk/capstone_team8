@@ -5,348 +5,504 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="254dp"
-        android:layout_height="105dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="78dp"
-        android:layout_marginBottom="604dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@null"
-        android:scaleType="fitCenter"
-        android:src="@drawable/a"
-        android:visibility="visible" />
-    <!-- 빽다방 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="120dp"
-        android:maxWidth="35dp"
-        android:maxHeight="35dp"
-        android:padding="0sp"
-        android:background="#FFFFFF"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
-    <!--스타벅스 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/starbucksButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="120dp"
-        android:maxWidth="35dp"
-        android:maxHeight="35dp"
-        android:padding="0sp"
-        android:background="#FFFFFF"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/starbucks" />
-    <!--이디야 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/ediyaButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="210dp"
-        android:layout_marginTop="120dp"
-        android:maxWidth="35dp"
-        android:maxHeight="35dp"
-        android:padding="0sp"
-        android:background="#FFFFFF"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toEndOf="@+id/starbucksButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ediya" />
-    <!--컴포즈 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/composeButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="20dp"
-        android:maxWidth="35dp"
-        android:maxHeight="35dp"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ediyaButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/compose" />
-    <!--엔젤리너스 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/angelButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="220dp"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-        app:srcCompat="@drawable/angel" />
-    <!--할리스이미지 버튼-->
-    <ImageButton
-        android:id="@+id/hollysButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="220dp"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        android:background="#FFFFFF"
-        app:layout_constraintStart_toEndOf="@+id/angelButton"
-        app:layout_constraintTop_toBottomOf="@+id/starbucksButton"
-        app:srcCompat="@drawable/hollus" />
-    <!--메가커피 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/megaButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="210dp"
-        android:layout_marginTop="220dp"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toEndOf="@+id/hollysButton"
-        app:layout_constraintTop_toBottomOf="@+id/ediyaButton"
-        app:srcCompat="@drawable/mega" />
-    <!--파스구찌 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/ppascucciButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="220dp"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        android:background="#FFFFFF"
-        app:layout_constraintStart_toEndOf="@+id/megaButton"
-        app:layout_constraintTop_toBottomOf="@+id/composeButton"
-        app:srcCompat="@drawable/pascucci" />
-    <!--탐앤탐스 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/tomButton"
-        android:layout_width="56dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="320dp"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        android:background="#FFFFFF"
-        app:layout_constraintStart_toEndOf="@+id/twsomeButton"
-        app:layout_constraintTop_toBottomOf="@+id/hollysButton"
-        app:srcCompat="@drawable/tomntoms" />
-    <!--투썸플레이스 이미지 버튼-->
-    <ImageButton
-        android:id="@+id/twsomeButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="320dp"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/angelButton"
-        app:srcCompat="@drawable/twosome" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="180dp"
-        android:fontFamily="@font/jalnan"
-        android:text="백다방"
-
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="180dp"
-        android:fontFamily="@font/jalnan"
-        android:text="스타벅스"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-
-        />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="180dp"
-        android:fontFamily="@font/jalnan"
-        android:text="이디야"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-
-        />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="180dp"
-        android:fontFamily="@font/jalnan"
-        android:text="컴포즈"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-
-        />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="280dp"
-        android:fontFamily="@font/jalnan"
-        android:text="엔젤리너스"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-
-        />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="280dp"
-        android:fontFamily="@font/jalnan"
-        android:text="할리스"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-
-        />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="280dp"
-        android:fontFamily="@font/jalnan"
-        android:text="메가커피"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton"
-
-        />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="297dp"
-        android:layout_marginTop="280dp"
-        android:fontFamily="@font/jalnan"
-        android:text="파스쿠찌"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="380dp"
-        android:fontFamily="@font/jalnan"
-        android:text="탐앤탐스"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="127dp"
-        android:layout_marginTop="380dp"
-        android:fontFamily="@font/jalnan"
-        android:text="투썸플레이스"
-        android:textColor="#000000"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="260dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="20dp"
-        android:background="#808080" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="160dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="430dp"
-        android:layout_marginBottom="20dp"
-        android:background="#00AAFF" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="85dp"
-        android:fontFamily="@font/jalnan"
-        android:text="브랜드"
-        android:textColor="#808080"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="415dp"
-        android:fontFamily="@font/jalnan"
-        android:text="이 메뉴는 어때?"
-        android:textColor="#00AAFF"
-        android:textSize="20sp" />
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="450dp"
-        android:layout_marginEnd="30dp"
-        android:id="@+id/rvRand"
-        android:visibility="visible"/>
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="254dp"
+                android:layout_height="105dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+
+                android:src="@drawable/a"
+                android:visibility="visible" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jalnan"
+                    android:layout_marginLeft="50dp"
+                    android:text="브랜드"
+                    android:textColor="#808080"
+                    android:textSize="20sp" />
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#808080" />
+
+
+            </LinearLayout>
+
+
+
+
+            <!-- 빽다방 이미지 버튼-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="50dp"
+                    android:maxWidth="35dp"
+                    android:maxHeight="35dp"
+                    android:padding="0sp"
+                    android:background="#FFFFFF"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/back" />
+                <ImageButton
+                    android:id="@+id/starbucksButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:maxWidth="35dp"
+                    android:maxHeight="35dp"
+                    android:padding="0sp"
+                    android:background="#FFFFFF"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toEndOf="@+id/backButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/starbucks" />
+                <ImageButton
+                    android:id="@+id/ediyaButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:maxWidth="35dp"
+                    android:maxHeight="35dp"
+                    android:padding="0sp"
+                    android:background="#FFFFFF"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toEndOf="@+id/starbucksButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ediya" />
+                <ImageButton
+                    android:id="@+id/composeButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:maxWidth="35dp"
+                    android:maxHeight="35dp"
+                    android:padding="0sp"
+                    android:scaleType="centerCrop"
+                    android:backgroundTint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ediyaButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/compose" />
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/jalnan"
+                    android:text="백다방"
+                    android:layout_marginLeft="60dp"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jalnan"
+                    android:layout_marginLeft="45dp"
+                    android:text="스타벅스"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton"
+
+                    />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:fontFamily="@font/jalnan"
+                    android:text="이디야"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton"
+
+                    />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="43dp"
+                    android:fontFamily="@font/jalnan"
+                    android:text="컴포즈"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton"
+
+                    />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+
+                >
+
+                <ImageButton
+                    android:id="@+id/angelButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="50dp"
+                    android:padding="0sp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton"
+                    app:srcCompat="@drawable/angel" />
+
+                <ImageButton
+                    android:id="@+id/hollysButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="#FFFFFF"
+                    android:padding="0sp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toEndOf="@+id/angelButton"
+                    app:layout_constraintTop_toBottomOf="@+id/starbucksButton"
+                    app:srcCompat="@drawable/hollus" />
+                <ImageButton
+                    android:id="@+id/megaButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="0sp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toEndOf="@+id/hollysButton"
+                    app:layout_constraintTop_toBottomOf="@+id/ediyaButton"
+                    app:srcCompat="@drawable/mega" />
+                <ImageButton
+                    android:id="@+id/ppascucciButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="0sp"
+                    android:scaleType="centerCrop"
+                    android:background="#FFFFFF"
+                    app:layout_constraintStart_toEndOf="@+id/megaButton"
+                    app:layout_constraintTop_toBottomOf="@+id/composeButton"
+                    app:srcCompat="@drawable/pascucci" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                >
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jalnan"
+                    android:text="엔젤리너스"
+                    android:layout_marginLeft="55dp"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton"
+
+                    />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:fontFamily="@font/jalnan"
+                    android:text="할리스"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton"
+
+                    />    <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:fontFamily="@font/jalnan"
+                android:text="메가커피"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backButton"
+
+                />
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jalnan"
+                    android:text="파스쿠찌"
+                    android:layout_marginLeft="37dp"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageButton
+                    android:id="@+id/tomButton"
+                    android:layout_width="56dp"
+                    android:layout_height="60dp"
+                    android:padding="0sp"
+                    android:layout_marginLeft="50dp"
+                    android:scaleType="centerCrop"
+                    android:background="#FFFFFF"
+                    app:layout_constraintStart_toEndOf="@+id/twsomeButton"
+                    app:layout_constraintTop_toBottomOf="@+id/hollysButton"
+                    app:srcCompat="@drawable/tomntoms" />
+                <ImageButton
+                    android:id="@+id/twsomeButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="25dp"
+                    android:padding="0sp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/angelButton"
+                    app:srcCompat="@drawable/twosome" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/jalnan"
+                    android:text="탐앤탐스"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="55dp"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton" />
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jalnan"
+                    android:layout_marginLeft="30dp"
+                    android:text="투썸플레이스"
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+            </LinearLayout>
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="7dp"
+                android:background="#F0F0F0" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                >
+
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jalnan"
+                    android:text="이런 메뉴는 어때?"
+                    android:textColor="#00AAFF"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_height="2dp"
+                    android:background="#00AAFF" />
+
+
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvRand"
+                android:visibility="visible"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="#F0F0F0"
+                android:orientation="vertical"
+                >
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="1dp"
+                    android:background="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jalnan"
+                    android:layout_marginTop="20dp"
+                     android:layout_marginLeft="20dp"
+                    android:text="커피 어때"
+                    android:textColor="#C2C2C2"
+                    android:textSize="20sp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/malgunbd"
+
+                    android:layout_marginLeft="20dp"
+                    android:text="주소 : 27469 충청북도 충주시 대학로 50"
+                    android:textColor="#BDBDBD"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/malgunbd"
+
+                    android:layout_marginLeft="20dp"
+                    android:text="캡스톤 디자인 8팀"
+                    android:textColor="#BDBDBD"
+                    android:textSize="12sp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/malgunbd"
+            android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="TEL. 043-820-5114"
+                    android:textColor="#BDBDBD"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/malgunbd"
+
+                    android:layout_marginLeft="20dp"
+                    android:text="전자 우편 : gusdn-2137@naver.com"
+                    android:textColor="#BDBDBD"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/malgunbd"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="COPYRIGHT(c)2017 KOREA NATIONAL UNIVERSITY OF TRANSPORTATION.ALL RIGHTS RESERVED"
+                    android:textColor="#BDBDBD"
+                    android:textSize="8sp"
+                    />
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
 </FrameLayout>

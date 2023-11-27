@@ -8,10 +8,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/jalnan"
         android:text="커피 추천"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:background="@drawable/menulayout1"
+        android:layout_marginBottom="10dp"
+        />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,18 +32,25 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/back"/>
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                       android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="빽다방"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
+                        android:textColor="#071F60"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#071F60" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -56,18 +67,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/starbucks"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="스타벅스"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
+                        android:textColor="#00704A"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider3"
+                        android:layout_width="320dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#00704A" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -83,18 +100,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/ediya"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="이디야"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
+                        android:textColor="#101E5B"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#101E5B" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -110,18 +133,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/compose"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="컴포즈"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
+                        android:textColor="#FFD408"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider5"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FFD408" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -137,18 +166,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/angel"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="엔젤리너스"
+                        android:textColor="#000000"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider7"
+                        android:layout_width="320dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#000000" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -164,18 +199,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/hollus"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="할리스"
+                        android:textColor="#B90109"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider8"
+                        android:layout_width="320dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#B90109" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -191,18 +232,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/mega"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="메가커피"
+                        android:textColor="#FFDC00"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider9"
+                        android:layout_width="320dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FFDC00" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -218,18 +265,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/pascucci"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="파스쿠찌"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="파스구찌"
+                        android:textColor="#E51937"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider10"
+                        android:layout_width="320dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#E51937" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -245,18 +298,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/tomntoms"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="탐앤탐스"
+                        android:textColor="#572A2F"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider12"
+                        android:layout_width="320dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#572A2F" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -272,18 +331,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/twosome"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="투썸플레이스"
+                        android:textColor="#000000"
                         android:fontFamily="@font/jalnan"
                         android:textSize="20dp"
                         android:gravity="center"
                         android:layout_gravity="center"/>
+                    <View
+                        android:id="@+id/divider11"
+                        android:layout_width="320dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#000000" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
