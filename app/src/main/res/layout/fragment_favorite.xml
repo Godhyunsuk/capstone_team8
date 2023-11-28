@@ -34,7 +34,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginBottom="7dp"
-            app:srcCompat="@drawable/wishlist"
+            app:srcCompat="@drawable/wi"
             />
 
     </LinearLayout>

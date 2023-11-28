@@ -116,7 +116,6 @@ public class RecommendFragment extends Fragment {
                     DrinkActivity.name=names[position];
                     DrinkActivity.id=ids[position];
                     DrinkActivity.CoffeeObject = fd;
-                    System.out.println(fd[0].getD_id());
                 }
             });
             rvs[i].setAdapter(adapter);
