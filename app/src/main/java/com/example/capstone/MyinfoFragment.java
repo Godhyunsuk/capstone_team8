@@ -26,12 +26,15 @@ public class MyinfoFragment extends Fragment {
     String Like_List;
     SharedPreferences pref;
     ContentValues values;
+    SharedPreferences.Editor editor;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myinfo,container,false);
         pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
+        editor = pref.edit();
+
         user_id = pref.getString("Id","");
         Like_List = pref.getString("LL","");
         values = new ContentValues();
@@ -42,10 +45,7 @@ public class MyinfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                values.put("emailId",user_id);
-                values.put("Like_List",Like_List);
-                Insert_Json JSON = new Insert_Json(values);
-                JSON.execute();
+
                 // 사용자 로그아웃
                 firebaseAuth.signOut();
                 Intent intent = new Intent(getActivity(),LoginActivity.class);

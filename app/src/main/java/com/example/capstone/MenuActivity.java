@@ -46,6 +46,8 @@ public class MenuActivity extends AppCompatActivity {
     static String brand;
     static String brand_Code;
     Button backBtn;
+    static String IMG_URL = "http://43.201.98.166/test/";
+    static String extend_name = ".png";
 
     ContentValues values = new ContentValues();
     @Override
@@ -188,7 +190,7 @@ public class MenuActivity extends AppCompatActivity {
             ImageView backImage = view.findViewById(R.id.menuImage);
             TextView backName = view.findViewById(R.id.menuName);
             try {
-                URL uri = new URL("http://43.201.98.166/test/"+arrCoffeeImage[position]+".png");
+                URL uri = new URL(IMG_URL+arrCoffeeImage[position]+extend_name);
                 Glide.with(context).load(uri).into(backImage);
             } catch (MalformedURLException e) {
                 e.printStackTrace();

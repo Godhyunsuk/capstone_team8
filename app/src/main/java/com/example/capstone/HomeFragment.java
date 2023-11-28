@@ -57,8 +57,6 @@ public class HomeFragment extends Fragment {
         pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
         editor = pref.edit();
         FavoriteFragment.FavoriteList= User.getLike_List();
-        System.out.println("Home");
-        System.out.println(User.getLike_List());
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +181,8 @@ public class HomeFragment extends Fragment {
                 jsonArray.put(str);
             }
             String jsonString = jsonArray.toString();
-            Log.d("HomeFragment",jsonString);
+            System.out.println(jsonString);
+            System.out.println("HOMEFRAGMENT");
             editor.putString("LL",jsonString);
             editor.commit();
         }catch(Exception e){

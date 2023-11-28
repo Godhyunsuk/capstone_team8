@@ -35,6 +35,8 @@ public class RecommendFragment extends Fragment {
     double[] fcentroid;
     Map<String ,double[]> data = new HashMap<>();
     All_Data All = new All_Data();
+    static String IMG_URL = "http://43.201.98.166/test/";
+    static String extend_name = ".png";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -189,7 +191,7 @@ public class RecommendFragment extends Fragment {
             void setItem(String name,String id) {
                 textView.setText(name);
                 try {
-                    URL uri = new URL("http://43.201.98.166/test/"+id+".png");
+                    URL uri = new URL(IMG_URL+id+extend_name);
                     Glide.with(context).load(uri).into(Img);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

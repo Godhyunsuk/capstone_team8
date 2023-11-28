@@ -37,6 +37,8 @@ public class FavoriteFragment extends Fragment {
     String[] favoriteId;
     ListView listView;
     All_Data All = new All_Data();
+    static String IMG_URL = "http://43.201.98.166/test/";
+    static String extend_name = ".png";
 
     @Nullable
     @Override
@@ -48,7 +50,7 @@ public class FavoriteFragment extends Fragment {
             listView.setVisibility(View.VISIBLE);
         }
         try{
-            Thread.sleep(1000);
+            Thread.sleep(1100);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -137,7 +139,7 @@ public class FavoriteFragment extends Fragment {
             ImageView backImage = view.findViewById(R.id.menuImage);
             TextView backName = view.findViewById(R.id.menuName);
             try {
-                URL uri = new URL("http://43.201.98.166/test/"+arrBackImage[position]+".png");
+                URL uri = new URL(IMG_URL+arrBackImage[position]+extend_name);
                 Glide.with(context).load(uri).into(backImage);
             } catch (MalformedURLException e) {
                 e.printStackTrace();

@@ -43,6 +43,8 @@ public class DrinkActivity extends AppCompatActivity {
     static String name;
     CheckOK OK;
     CheckNO NO;
+    static String IMG_URL = "http://43.201.98.166/test/";
+    static String extend_name = ".png";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +116,7 @@ public class DrinkActivity extends AppCompatActivity {
         drinkKcal.setText(kcal);
 
         try {
-            URL uri = new URL("http://43.201.98.166/test/"+id+".png");
+            URL uri = new URL(IMG_URL+id+extend_name);
             Glide.with(DrinkActivity.this).load(uri).into(drinkImg);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -124,7 +126,7 @@ public class DrinkActivity extends AppCompatActivity {
             TextView tvrmd = tvrmds[i];
             tvrmd.setText(rsList.get(i));
             try {
-                URL uri = new URL("http://43.201.98.166/test/"+findId.get(rsList.get(i))+".png");
+                URL uri = new URL(IMG_URL+findId.get(rsList.get(i))+extend_name);
                 Glide.with(DrinkActivity.this).load(uri).into(ivRmds[i]);
             } catch (MalformedURLException e) {
                 e.printStackTrace();

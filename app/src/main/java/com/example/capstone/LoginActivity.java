@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.capstone.DAO.Check_and_Find;
+import com.example.capstone.DAO.Insert_Json;
 import com.example.capstone.DAO.RegisterRequest;
 import com.example.capstone.Unit.Session_Unit;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,9 +47,27 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private EditText etEmail, etPwd, etPwdChk, etNickname; //입력 필드
     private Button btnLogin, btnRegister;
+    private ContentValues values = new ContentValues();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences pref = getSharedPreferences("pref",MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        String user_id = pref.getString("Id","");
+        String Like_List = pref.getString("LL","");
+
+        if(!user_id.equals("")){
+            values.put("emailId",user_id);
+            values.put("Like_List",Like_List);
+            Insert_Json JSON = new Insert_Json(values);
+            System.out.println(user_id);
+            System.out.println(Like_List);
+            JSON.execute();
+            editor.remove("Id");
+            editor.remove("LL");
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
