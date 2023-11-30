@@ -25,7 +25,7 @@ public class SelectData {
     //Gson gson = new Gson();
     public SelectData(String File, String Brand){
         JsonParse jsonParse = new JsonParse(Brand);      // AsyncTask 생성
-        jsonParse.execute("http://43.201.98.166/"+File+".php");     // AsyncTask 실행
+        jsonParse.execute("http://43.201.18.155/"+File+".php");     // AsyncTask 실행
     }
 
     public class JsonParse extends AsyncTask<String, Void, String> {

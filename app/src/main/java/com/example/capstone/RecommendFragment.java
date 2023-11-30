@@ -35,7 +35,7 @@ public class RecommendFragment extends Fragment {
     double[] fcentroid;
     Map<String ,double[]> data = new HashMap<>();
     All_Data All = new All_Data();
-    static String IMG_URL = "http://43.201.98.166/test/";
+    static String IMG_URL = "http://43.201.18.155/test/";
     static String extend_name = ".png";
     @Nullable
     @Override
@@ -58,7 +58,7 @@ public class RecommendFragment extends Fragment {
         String[] brand_Codes = {"BB","SB","ED","CC","AG","HA","MG","PC","tt","TW"};
         List<String> favoriteList = FavoriteFragment.FavoriteList;
         try{
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }

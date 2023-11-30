@@ -33,7 +33,7 @@ public class All_Data {
 
     public class JsonParse extends AsyncTask<String, Void, String> {
         String TAG = "hap";
-        String url = "http://43.201.98.166/All_Select.php";
+        String url = "http://43.201.18.155/All_Select.php";
         ContentValues values;
         public JsonParse(){}
         public JsonParse(ContentValues values){

@@ -33,7 +33,7 @@ public class DrinkData {
 
     public class JsonParse extends AsyncTask<String, Void, String> {
         String TAG;
-        String url = "http://43.201.98.166/All_Brand.php";
+        String url = "http://43.201.18.155/All_Brand.php";
         ContentValues values;
         public JsonParse(){}
         public JsonParse(ContentValues values){

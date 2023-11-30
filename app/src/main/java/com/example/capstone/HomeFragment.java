@@ -67,11 +67,10 @@ public class HomeFragment extends Fragment {
         pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
         editor = pref.edit();
         FavoriteFragment.FavoriteList= User.getLike_List();
-
         System.out.println("Home");
         System.out.println(User.getLike_List());
         try{
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -276,7 +275,7 @@ public class HomeFragment extends Fragment {
             void setItem(String name,String id) {
                 textView.setText(name);
                 try {
-                    URL uri = new URL("http://43.201.98.166/test/"+id+".png");
+                    URL uri = new URL("http://43.201.18.155/test/"+id+".png");
                     Glide.with(context).load(uri).into(Img);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

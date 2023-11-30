@@ -36,7 +36,7 @@ public class Check_and_Find extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         try {
             // PHP 서버의 URL
-            String serverUrl = "http://43.201.98.166/Check_and_Find.php?emailId="+value;
+            String serverUrl = "http://43.201.18.155/Check_and_Find.php?emailId="+value;
             StringBuffer sbParams = new StringBuffer();
 
             // URL 설정 및 연결

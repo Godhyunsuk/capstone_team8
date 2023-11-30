@@ -18,7 +18,7 @@ public class Insert_Json extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         try {
             // PHP 서버의 URL
-            String serverUrl = "http://43.201.98.166/Update_User_Like_List.php";
+            String serverUrl = "http://43.201.18.155/Update_User_Like_List.php";
             StringBuffer sbParams = new StringBuffer();
             if(values == null){
                 sbParams.append("");

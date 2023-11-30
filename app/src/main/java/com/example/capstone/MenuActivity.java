@@ -46,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
     static String brand;
     static String brand_Code;
     Button backBtn;
-    static String IMG_URL = "http://43.201.98.166/test/";
+    static String IMG_URL = "http://43.201.18.155/test/";
     static String extend_name = ".png";
 
     ContentValues values = new ContentValues();
@@ -61,7 +61,7 @@ public class MenuActivity extends AppCompatActivity {
         DrinkData dd = new DrinkData(values);
 
         try{
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }

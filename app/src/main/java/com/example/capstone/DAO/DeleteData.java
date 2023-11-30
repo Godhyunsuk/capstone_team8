@@ -17,7 +17,7 @@ public class DeleteData extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         try {
             // PHP 서버의 URL
-            String serverUrl = "http://43.201.98.166/Clear_Data.php";
+            String serverUrl = "http://43.201.18.155/Clear_Data.php";
             // URL 설정 및 연결
             URL url = new URL(serverUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

@@ -43,7 +43,7 @@ public class DrinkActivity extends AppCompatActivity {
     static String name;
     CheckOK OK;
     CheckNO NO;
-    static String IMG_URL = "http://43.201.98.166/test/";
+    static String IMG_URL = "http://43.201.18.155/test/";
     static String extend_name = ".png";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

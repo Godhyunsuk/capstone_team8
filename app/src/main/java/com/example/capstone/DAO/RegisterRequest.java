@@ -22,7 +22,7 @@ public class RegisterRequest extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         try {
             // PHP 서버의 URL
-            String serverUrl = "http://43.201.98.166/login.php";
+            String serverUrl = "http://43.201.18.155/login.php";
             StringBuffer sbParams = new StringBuffer();
             if(values == null){
                 sbParams.append("");

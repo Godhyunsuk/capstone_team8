@@ -22,7 +22,7 @@ public class CheckOK extends AsyncTask<String, Void, String> {
         try {
 
             // PHP 서버의 URL
-            String serverUrl = "http://43.201.98.166/Checked.php";
+            String serverUrl = "http://43.201.18.155/Checked.php";
             StringBuffer sbParams = new StringBuffer();
             if(values == null){
                 sbParams.append("");

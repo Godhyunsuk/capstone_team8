@@ -37,7 +37,7 @@ public class FavoriteFragment extends Fragment {
     String[] favoriteId;
     ListView listView;
     All_Data All = new All_Data();
-    static String IMG_URL = "http://43.201.98.166/test/";
+    static String IMG_URL = "http://43.201.18.155/test/";
     static String extend_name = ".png";
 
     @Nullable
@@ -50,7 +50,7 @@ public class FavoriteFragment extends Fragment {
             listView.setVisibility(View.VISIBLE);
         }
         try{
-            Thread.sleep(1100);
+            Thread.sleep(2000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
